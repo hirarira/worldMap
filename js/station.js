@@ -154,13 +154,15 @@ class Station {
         case 'cityLocal':
           return stationIconList.cityLocal;
         default:
-          return stationIconList.cityLocal;
+          return null;
       }
     })() 
     // 地点マーカーを追加する
-    addLayerInstance.marker.addLayer(
-      L.marker([params.pos.x, params.pos.y], {icon: stationIcon})
-    )
+    if(stationIcon !== null) {
+      addLayerInstance.marker.addLayer(
+        L.marker([params.pos.x, params.pos.y], {icon: stationIcon})
+      )
+    }
     if(params.label !== '') {
       const divIcon = L.divIcon({
         html: params.label,
