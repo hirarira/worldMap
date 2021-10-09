@@ -112,7 +112,7 @@ class Station {
   }
 
   // 駅の描画を行う
-  setStationMarker = (params) => {
+  setStationMarker = (params, lineName) => {
     const addLayerInstance = (()=>{
       switch(params.type) {
         case 'main':
@@ -159,7 +159,13 @@ class Station {
     })() 
     // 地点マーカーを追加する
     if(stationIcon !== null) {
-      const popUpBody = `<p>${params.label}</p>`;
+      const popupBodyList = [
+        `路線: ${lineName}`,
+        `駅名: ${params.label}`
+      ]
+      const popUpBody = popupBodyList.reduce((a, x)=>{
+        return a + `<p>${x}</p>`;
+      }, "")
       const popup = L.popup().setContent(popUpBody);
       addLayerInstance.marker.addLayer(
         L.marker([params.pos.x, params.pos.y], {icon: stationIcon}).bindPopup(popup).openPopup()
@@ -193,7 +199,7 @@ class Station {
   drawTrainLine = () => {
     this.lines.forEach((line)=>{
       line.stations.forEach((station)=>{
-        this.setStationMarker(station);
+        this.setStationMarker(station, line.lineName);
       });
       formatLines(line)
       .forEach((section)=>{
