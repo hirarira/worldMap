@@ -69,7 +69,6 @@ class LeafletMap {
       numDigits: 7
     }
     // 現在表示中の座標情報を表示する
-    L.control.mousePosition(options).addTo(this.map);
     this.show = {
       train: true,
       elevation: false,
