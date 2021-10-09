@@ -155,6 +155,9 @@ class LeafletMap {
 
   // マップ中をクリックした際に呼ばれるイベント
   onClickMap = (e) => {
+    if(this.mode === 'normalMode') {
+      return;
+    }
     if(this.mode === 'inputMode') {
       this.setNewStation(e)
     }

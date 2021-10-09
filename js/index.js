@@ -16,15 +16,18 @@ window.onload = () => {
     if(params.get('inputMode') === 'true') {
       return 'inputMode';
     }
-    return 'noramalMode';
+    if(params.get('distanceMode') === 'true') {
+      return 'distanceMode';
+    }
+    return 'normalMode';
   })()
   // inputModeが有効でない場合には入力欄を非表示にする
   if(mode !== 'inputMode') {
     $(".inputMode").hide();
   }
   // inputModeが有効のときには距離測定欄を非表示にする
-  if(mode !== 'noramalMode') {
-    $(".normalMode").hide();
+  if(mode !== 'distanceMode') {
+    $(".distanceMode").hide();
   }
   // LeafketMapを定義する
   const map = new LeafletMap(mode);

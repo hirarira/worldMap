@@ -159,8 +159,10 @@ class Station {
     })() 
     // 地点マーカーを追加する
     if(stationIcon !== null) {
+      const popUpBody = `<p>${params.label}</p>`;
+      const popup = L.popup().setContent(popUpBody);
       addLayerInstance.marker.addLayer(
-        L.marker([params.pos.x, params.pos.y], {icon: stationIcon})
+        L.marker([params.pos.x, params.pos.y], {icon: stationIcon}).bindPopup(popup).openPopup()
       )
     }
     if(params.label !== '') {
