@@ -112,7 +112,7 @@ class Station {
   }
 
   // 駅の描画を行う
-  setStationMarker = (params, lineName) => {
+  setStationMarker = (params, popupBodyList) => {
     const addLayerInstance = (()=>{
       switch(params.type) {
         case 'main':
@@ -159,10 +159,6 @@ class Station {
     })() 
     // 地点マーカーを追加する
     if(stationIcon !== null) {
-      const popupBodyList = [
-        `路線: ${lineName}`,
-        `駅名: ${params.label}`
-      ]
       const popUpBody = popupBodyList.reduce((a, x)=>{
         return a + `<p>${x}</p>`;
       }, "")
@@ -198,8 +194,32 @@ class Station {
   // 鉄道路線の描画を行う
   drawTrainLine = () => {
     this.lines.forEach((line)=>{
-      line.stations.forEach((station)=>{
-        this.setStationMarker(station, line.lineName);
+      line.stations.forEach((station, index)=>{
+        // ポップアップに表示するラベルを定める
+        const stationLabel = station.label !== ''? station.label: '(駅名未定)'
+        const popupBodyList = [
+          `路線: ${line.lineName}`,
+          `駅名: ${stationLabel}`
+        ];
+        if(index > 0) {
+          const beforeStation = line.stations[index-1];
+          const beforeStationLabel = beforeStation.label !== ''? beforeStation.label: '(駅名未定)';
+          const beforeStationDistance = calcDistance(
+            [beforeStation.pos.x, beforeStation.pos.y],
+            [station.pos.x, station.pos.y]
+          );
+          popupBodyList.push(`← ${beforeStationLabel} (${beforeStationDistance} km)`);
+        }
+        if(line.stations[index+1]) {
+          const afterStation = line.stations[index+1];
+          const afterStationLabel = afterStation.label !== ''? afterStation.label: '(駅名未定)';
+          const afterStationDistance = calcDistance(
+            [afterStation.pos.x, afterStation.pos.y],
+            [station.pos.x, station.pos.y]
+          );
+          popupBodyList.push(`${afterStationLabel} (${afterStationDistance} km) →`);
+        }
+        this.setStationMarker(station, popupBodyList);
       });
       formatLines(line)
       .forEach((section)=>{

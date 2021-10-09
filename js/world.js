@@ -23,7 +23,7 @@ class LeafletMap {
     this.mode = mode;
     this.map = L.map('map', {
       minZoom: 1,
-      maxZoom: 9,
+      maxZoom: 10,
       center: [-225, 166],
       zoom: 4,
       crs: L.CRS.Simple
@@ -144,15 +144,6 @@ class LeafletMap {
     .addTo(this.map);
   }
 
-  // 二点感距離を求める
-  calcDistance = (posA, posB) => {
-    const a = Math.abs(posB[0] - posA[0]);
-    const b = Math.abs(posB[1] - posA[1]);
-    const distance = Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2));
-    const km = distance / LeafletMap.ONE_KM_TO_MAPDISTANCE;
-    return Math.round(km*1000)/1000;
-  }
-
   // マップ中をクリックした際に呼ばれるイベント
   onClickMap = (e) => {
     if(this.mode === 'normalMode') {
@@ -184,7 +175,7 @@ class LeafletMap {
         L.polyline(linePos, lineOption)
       );
       // 距離を求める
-      const sectionDistance = this.calcDistance(beforePoint, latlng);
+      const sectionDistance = calcDistance(beforePoint, latlng);
       this.clickDistanceList.totalDistance += sectionDistance;
       const showDistance = Math.round(this.clickDistanceList.totalDistance*1000)/1000;
       $('#totalDistance').text(showDistance);
@@ -274,4 +265,13 @@ class LeafletMap {
     this.station.swichShowMarker();
     this.station.showStationMarker();
   }
+}
+
+// 二点感距離を求める
+function calcDistance(posA, posB) {
+  const a = Math.abs(posB[0] - posA[0]);
+  const b = Math.abs(posB[1] - posA[1]);
+  const distance = Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2));
+  const km = distance / LeafletMap.ONE_KM_TO_MAPDISTANCE;
+  return Math.round(km*1000)/1000;
 }
