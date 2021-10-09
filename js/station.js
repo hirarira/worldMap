@@ -159,13 +159,18 @@ class Station {
     })() 
     // 地点マーカーを追加する
     if(stationIcon !== null) {
-      const popUpBody = popupBodyList.reduce((a, x)=>{
-        return a + `<p>${x}</p>`;
-      }, "")
-      const popup = L.popup().setContent(popUpBody);
-      addLayerInstance.marker.addLayer(
-        L.marker([params.pos.x, params.pos.y], {icon: stationIcon}).bindPopup(popup).openPopup()
-      )
+      let popup;
+      if(popupBodyList) {
+        const popUpBody = popupBodyList.reduce((a, x)=>{
+          return a + `<p>${x}</p>`;
+        }, "")
+        popup = L.popup().setContent(popUpBody);
+      }
+      const marker = L.marker([params.pos.x, params.pos.y], {icon: stationIcon})
+      addLayerInstance.marker.addLayer(marker);
+      if(popup) {
+        marker.bindPopup(popup).openPopup()
+      }
     }
     if(params.label !== '') {
       const divIcon = L.divIcon({
