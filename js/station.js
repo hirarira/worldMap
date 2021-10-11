@@ -74,6 +74,7 @@ class Station {
       '100_endelMainLine.json',
       '101_endleAirportLine.json',
       '103_dorejiLine.json',
+      '104_daneLine.json',
       '110_losnalMainLine.json',
       '111_babetLine.json',
       '112_musujolLine.json',
