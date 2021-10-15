@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
     <script src="./js/layer.js"></script>
     <script src="./js/station.js"></script>
     <script src="./js/world.js"></script>
@@ -67,6 +68,35 @@
             <a href="./?inputMode=true">
               <button class="btn-primary">inputMode</button>
             </a>
+          </div>
+        </div>
+      </div>
+      <!-- ポップアップウィンドウ用のパーツ -->
+      <div id="popup">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12">
+              {{lineName}}
+            </div>
+            <div class="col-sm-12">
+              {{stationName}}
+            </div>
+            <div class="col-sm-4">
+              ← {{beforeStation.label}}
+            </div>
+            <div class="col-sm-4">
+            </div>
+            <div class="col-sm-4">
+              {{afterStation.label}} →
+            </div>
+            <div class="col-sm-4">
+              {{beforeStation.distance}} km
+            </div>
+            <div class="col-sm-4">
+            </div>
+            <div class="col-sm-4">
+              {{afterStation.distance}} km 
+            </div>
           </div>
         </div>
       </div>

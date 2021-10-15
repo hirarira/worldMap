@@ -41,3 +41,4 @@ window.onload = () => {
     resetDistance: map.resetDistanceMarker
   }
 }
+

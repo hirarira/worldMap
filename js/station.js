@@ -53,6 +53,25 @@ class Station {
         }
       }
     };
+    // popUpを制御するVue
+    this.popup = new Vue({
+      el: '#popup',
+      data: {
+        lineName: '',
+        stationName: '',
+        beforeStation: {},
+        afterStation: {}
+      },
+      methods: {
+        setData: (data) => {
+          console.log(data);
+          this.popup.lineName = data.lineName;
+          this.popup.stationName = data.stationName;
+          this.popup.beforeStation = data.beforeStation;
+          this.popup.afterStation = data.afterStation;
+        }
+      }
+    })
     // 外部JSONより路線リストを読み込む
     this.readStationFile('lineList.json')
     .then((stationFileList)=>{
@@ -83,7 +102,7 @@ class Station {
   }
 
   // 駅の描画を行う
-  setStationMarker = (params, popupBodyList) => {
+  setStationMarker = (params, popupBodyObject) => {
     const addLayerInstance = (()=>{
       switch(params.type) {
         case 'main':
@@ -131,16 +150,16 @@ class Station {
     // 地点マーカーを追加する
     if(stationIcon !== null) {
       let popup;
-      if(popupBodyList) {
-        const popUpBody = popupBodyList.reduce((a, x)=>{
-          return a + `<p>${x}</p>`;
-        }, "")
-        popup = L.popup().setContent(popUpBody);
+      if(popupBodyObject) {
+        const hoge = $('#popup').get(0);
+        popup = L.popup().setContent(hoge);
       }
       const marker = L.marker([params.pos.x, params.pos.y], {icon: stationIcon})
       addLayerInstance.marker.addLayer(marker);
       if(popup) {
-        marker.bindPopup(popup).openPopup()
+        marker.bindPopup(popup).openPopup().on('click', ()=>{
+          this.popup.setData(popupBodyObject);
+        })
       }
     }
     if(params.label !== '') {
@@ -172,30 +191,32 @@ class Station {
     this.lines.forEach((line)=>{
       line.stations.forEach((station, index)=>{
         // ポップアップに表示するラベルを定める
-        const stationLabel = station.label !== ''? station.label: '(駅名未定)'
-        const popupBodyList = [
-          `路線: ${line.lineName}`,
-          `駅名: ${stationLabel}`
-        ];
+        const stationLabel = station.label !== ''? station.label: '(駅名未定)';
+        const popupBodyObject = {
+          lineName: line.lineName,
+          stationName:  stationLabel
+        };
         if(index > 0) {
           const beforeStation = line.stations[index-1];
-          const beforeStationLabel = beforeStation.label !== ''? beforeStation.label: '(駅名未定)';
-          const beforeStationDistance = calcDistance(
-            [beforeStation.pos.x, beforeStation.pos.y],
-            [station.pos.x, station.pos.y]
-          );
-          popupBodyList.push(`← ${beforeStationLabel} (${beforeStationDistance} km)`);
+          popupBodyObject.beforeStation = {
+            label: beforeStation.label !== ''? beforeStation.label: '(駅名未定)',
+            distance: calcDistance(
+              [beforeStation.pos.x, beforeStation.pos.y],
+              [station.pos.x, station.pos.y]
+            )
+          };
         }
         if(line.stations[index+1]) {
           const afterStation = line.stations[index+1];
-          const afterStationLabel = afterStation.label !== ''? afterStation.label: '(駅名未定)';
-          const afterStationDistance = calcDistance(
-            [afterStation.pos.x, afterStation.pos.y],
-            [station.pos.x, station.pos.y]
-          );
-          popupBodyList.push(`${afterStationLabel} (${afterStationDistance} km) →`);
+          popupBodyObject.afterStation = {
+            label: afterStation.label !== ''? afterStation.label: '(駅名未定)',
+            distance: calcDistance(
+              [afterStation.pos.x, afterStation.pos.y],
+              [station.pos.x, station.pos.y]
+            )
+          };
         }
-        this.setStationMarker(station, popupBodyList);
+        this.setStationMarker(station, popupBodyObject);
       });
       formatLines(line)
       .forEach((section)=>{
