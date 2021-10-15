@@ -53,45 +53,14 @@ class Station {
         }
       }
     };
-    const stationFileList = [
-      '001_dropLine.json',
-      '002_felfaLine.json',
-      '003_mashuli.json',
-      '004_enicalLine.json',
-      '005_cenelLine.json',
-      '006_neloleLine.json',
-      '007_letonLine copy.json',
-      '008_phateLine.json',
-      '009_ostaLine.json',
-      '010_felthenLine.json',
-      '011_konanEnganLine.json',
-      '012_enouLine.json',
-      '013_geondLine.json',
-      '014_tikusaLine.json',
-      '015_dorelLine.json',
-      '050_moldoLine.json',
-      '051_multLine.json',
-      '100_endelMainLine.json',
-      '101_endleAirportLine.json',
-      '103_dorejiLine.json',
-      '104_daneLine.json',
-      '110_losnalMainLine.json',
-      '111_babetLine.json',
-      '112_musujolLine.json',
-      '113_karabaLine.json',
-      '114_ogalLine.json',
-      '120_estimaMainLine.json',
-      '130_enicalLine.json',
-      '140_pholiLine.json',
-      '150_fmyolLine.json',
-      '160_nishiDonoliLine.json',
-      '200_dropLine.json',
-      '201_halideLine.json'
-    ]
-    const readStationPromises = stationFileList.map((x)=>{
-      return this.readStationFile(x);
+    // 外部JSONより路線リストを読み込む
+    this.readStationFile('lineList.json')
+    .then((stationFileList)=>{
+      const readStationPromises = stationFileList.map((x)=>{
+        return this.readStationFile(x);
+      })
+      return Promise.all(readStationPromises);
     })
-    Promise.all(readStationPromises)
     .then((dataAll)=>{
       this.lines = dataAll;
       this.drawTrainLine(dataAll);
