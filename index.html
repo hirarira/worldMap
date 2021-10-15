@@ -78,25 +78,37 @@
             <div class="col-sm-12">
               {{lineName}}
             </div>
-            <div class="col-sm-12">
+            <div class="col-sm-12 stationName">
               {{stationName}}
             </div>
-            <div class="col-sm-4">
-              ← {{beforeStation.label}}
+            <div class="col-sm-1"></div>
+            <div class="col-sm-3 colorLine">
+              <span v-if="beforeStation">
+                {{beforeStation.label}}
+              </span>
+            </div>
+            <div class="col-sm-4 colorLine">
+            </div>
+            <div class="col-sm-3 colorLine colorLineRight">
+              <span v-if="afterStation">
+                {{afterStation.label}}
+              </span>
+            </div>
+            <div class="col-sm-1"></div>
+            <div class="col-sm-1"></div>
+            <div class="col-sm-3">
+              <span v-if="beforeStation">
+                {{beforeStation.distance}} km
+              </span>
             </div>
             <div class="col-sm-4">
             </div>
-            <div class="col-sm-4">
-              {{afterStation.label}} →
+            <div class="col-sm-3">
+              <span v-if="afterStation">
+                {{afterStation.distance}} km
+              </span>
             </div>
-            <div class="col-sm-4">
-              {{beforeStation.distance}} km
-            </div>
-            <div class="col-sm-4">
-            </div>
-            <div class="col-sm-4">
-              {{afterStation.distance}} km 
-            </div>
+            <div class="col-sm-1"></div>
           </div>
         </div>
       </div>

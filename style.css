@@ -23,3 +23,26 @@ html,body{
 .normalMode {
   margin: 10px
 }
+
+#popup {
+  text-align: center;
+}
+
+.stationName {
+  font-size: 16px
+}
+
+.colorLine {
+  background-color: #98fb98;
+  height: 32px;
+  padding-top: 5px;
+}
+
+.colorLineRight::before  {
+  position: absolute;
+  content: "";
+  border: solid 16px transparent;
+  border-left:solid 24px #98fb98;
+  left: 100px;
+  top: 0px;
+}

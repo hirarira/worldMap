@@ -152,7 +152,10 @@ class Station {
       let popup;
       if(popupBodyObject) {
         const hoge = $('#popup').get(0);
-        popup = L.popup().setContent(hoge);
+        const popupOption = {
+          minWidth: 400
+        }
+        popup = L.popup(popupOption).setContent(hoge);
       }
       const marker = L.marker([params.pos.x, params.pos.y], {icon: stationIcon})
       addLayerInstance.marker.addLayer(marker);
