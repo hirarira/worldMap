@@ -85,7 +85,8 @@ class Station {
       '140_pholiLine.json',
       '150_fmyolLine.json',
       '160_nishiDonoliLine.json',
-      '200_dropLine.json'
+      '200_dropLine.json',
+      '201_halideLine.json'
     ]
     const readStationPromises = stationFileList.map((x)=>{
       return this.readStationFile(x);
