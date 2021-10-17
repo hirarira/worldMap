@@ -9,7 +9,7 @@ let pushButton = {
   resetDistance: () => {}
 }
 
-window.onload = () => {
+window.onload = () => {  
   // クエリパラメータの一覧を取得する
   const params = new URLSearchParams(location.search);
   const mode = (()=>{

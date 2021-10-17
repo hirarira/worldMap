@@ -29,20 +29,33 @@ html,body{
 }
 
 .stationName {
-  font-size: 16px
+  font-size: 18px;
+  font-weight: bold;
 }
 
 .colorLine {
-  background-color: #98fb98;
+  background-color: #228b22;
   height: 32px;
-  padding-top: 5px;
+}
+
+.centerColor {
+  height: 100%;
+  width: 30px;
+  background-color: #FF0000;
+  margin: auto;
+}
+
+.colorLineSide {
+  padding-top: 7px;
+  font-weight: bold;
+  color: #ffffff;
 }
 
 .colorLineRight::before  {
   position: absolute;
   content: "";
   border: solid 16px transparent;
-  border-left:solid 24px #98fb98;
+  border-left:solid 24px #228b22;
   left: 100px;
   top: 0px;
 }

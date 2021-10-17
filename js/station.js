@@ -64,7 +64,6 @@ class Station {
       },
       methods: {
         setData: (data) => {
-          console.log(data);
           this.popup.lineName = data.lineName;
           this.popup.stationName = data.stationName;
           this.popup.beforeStation = data.beforeStation;
@@ -151,11 +150,12 @@ class Station {
     if(stationIcon !== null) {
       let popup;
       if(popupBodyObject) {
-        const hoge = $('#popup').get(0);
+        // const colorLine = $('.colorLine').css('background-color', '#DD0000');
+        const popupDocument = $('#popup').get(0);
         const popupOption = {
           minWidth: 400
         }
-        popup = L.popup(popupOption).setContent(hoge);
+        popup = L.popup(popupOption).setContent(popupDocument);
       }
       const marker = L.marker([params.pos.x, params.pos.y], {icon: stationIcon})
       addLayerInstance.marker.addLayer(marker);

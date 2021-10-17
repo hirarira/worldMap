@@ -72,43 +72,46 @@
         </div>
       </div>
       <!-- ポップアップウィンドウ用のパーツ -->
-      <div id="popup">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-12">
-              {{lineName}}
+      <div hidden>
+        <div id="popup">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-12">
+                {{lineName}}
+              </div>
+              <div class="col-sm-12 stationName">
+                {{stationName}}
+              </div>
+              <div class="col-sm-1"></div>
+              <div class="col-sm-3 colorLine colorLineSide">
+                <span v-if="beforeStation">
+                  {{beforeStation.label}}
+                </span>
+              </div>
+              <div class="col-sm-4 colorLine">
+                <div class="centerColor"></div>
+              </div>
+              <div class="col-sm-3 colorLine colorLineSide colorLineRight">
+                <span v-if="afterStation">
+                  {{afterStation.label}}
+                </span>
+              </div>
+              <div class="col-sm-1"></div>
+              <div class="col-sm-1"></div>
+              <div class="col-sm-3">
+                <span v-if="beforeStation">
+                  {{beforeStation.distance}} km
+                </span>
+              </div>
+              <div class="col-sm-4">
+              </div>
+              <div class="col-sm-3">
+                <span v-if="afterStation">
+                  {{afterStation.distance}} km
+                </span>
+              </div>
+              <div class="col-sm-1"></div>
             </div>
-            <div class="col-sm-12 stationName">
-              {{stationName}}
-            </div>
-            <div class="col-sm-1"></div>
-            <div class="col-sm-3 colorLine">
-              <span v-if="beforeStation">
-                {{beforeStation.label}}
-              </span>
-            </div>
-            <div class="col-sm-4 colorLine">
-            </div>
-            <div class="col-sm-3 colorLine colorLineRight">
-              <span v-if="afterStation">
-                {{afterStation.label}}
-              </span>
-            </div>
-            <div class="col-sm-1"></div>
-            <div class="col-sm-1"></div>
-            <div class="col-sm-3">
-              <span v-if="beforeStation">
-                {{beforeStation.distance}} km
-              </span>
-            </div>
-            <div class="col-sm-4">
-            </div>
-            <div class="col-sm-3">
-              <span v-if="afterStation">
-                {{afterStation.distance}} km
-              </span>
-            </div>
-            <div class="col-sm-1"></div>
           </div>
         </div>
       </div>
