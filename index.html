@@ -82,30 +82,32 @@
               <div class="col-sm-12 stationName">
                 {{stationName}}
               </div>
+              <!-- 1行目 -->
               <div class="col-sm-1"></div>
-              <div class="col-sm-3 colorLine colorLineSide">
+              <div class="col-sm-4 colorLine colorLineSide">
                 <span v-if="beforeStation">
                   {{beforeStation.label}}
                 </span>
               </div>
-              <div class="col-sm-4 colorLine">
+              <div class="col-sm-2 colorLine">
                 <div class="centerColor"></div>
               </div>
-              <div class="col-sm-3 colorLine colorLineSide colorLineRight">
+              <div class="col-sm-4 colorLine colorLineSide colorLineRight">
                 <span v-if="afterStation">
                   {{afterStation.label}}
                 </span>
               </div>
               <div class="col-sm-1"></div>
+              <!-- 1行目 -->
               <div class="col-sm-1"></div>
-              <div class="col-sm-3">
+              <div class="col-sm-4">
                 <span v-if="beforeStation">
                   {{beforeStation.distance}} km
                 </span>
               </div>
-              <div class="col-sm-4">
+              <div class="col-sm-2">
               </div>
-              <div class="col-sm-3">
+              <div class="col-sm-4">
                 <span v-if="afterStation">
                   {{afterStation.distance}} km
                 </span>

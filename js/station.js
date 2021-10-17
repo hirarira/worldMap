@@ -150,7 +150,6 @@ class Station {
     if(stationIcon !== null) {
       let popup;
       if(popupBodyObject) {
-        // const colorLine = $('.colorLine').css('background-color', '#DD0000');
         const popupDocument = $('#popup').get(0);
         const popupOption = {
           minWidth: 400
