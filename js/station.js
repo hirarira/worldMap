@@ -33,8 +33,8 @@ class Station {
       // ローカル駅
       local: {
         zoom: {
-          marker: 5,
-          label: 6
+          marker: 4,
+          label: 5
         },
         layer: {
           marker: L.featureGroup(),
@@ -44,8 +44,8 @@ class Station {
       // 大都市近郊小駅
       cityLocal: {
         zoom: {
-          marker: 6,
-          label: 8
+          marker: 5,
+          label: 6
         },
         layer: {
           marker: L.featureGroup(),
@@ -117,19 +117,19 @@ class Station {
     const stationIconList = {
         main: L.icon({
           iconUrl: './img/icon/station-03.png',
-          iconSize: [30, 30]
+          iconSize: [25, 25]
         }),
         middle: L.icon({
           iconUrl: './img/icon/station-01.png',
-          iconSize: [30, 30]
+          iconSize: [20, 20]
         }),
         local: L.icon({
           iconUrl: './img/icon/station-02.png',
-          iconSize: [25, 25]
+          iconSize: [15, 15]
         }),
         cityLocal: L.icon({
           iconUrl: './img/icon/station-02.png',
-          iconSize: [20, 20],
+          iconSize: [10, 10],
         }),
     }
     const stationIcon = (()=>{
@@ -168,7 +168,7 @@ class Station {
       const divIcon = L.divIcon({
         html: params.label,
         className: 'divicon',
-        iconSize: [150, 30],
+        iconSize: [100, 20],
         iconAnchor: [75, -10]
       })
       // 地点ラベルを追加する
