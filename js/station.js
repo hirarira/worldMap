@@ -188,9 +188,26 @@ class Station {
     this.sections.push(polyline);
   }
 
+  // 路線名の描画をする
+  setLineName = (line) => {
+    const divIcon = L.divIcon({
+      html: line.lineName,
+      className: 'lineName',
+      iconSize: [200, 33],
+      iconAnchor: [75, -10]
+    })
+    this.stationMarkers.local.layer.label.addLayer(
+      L.marker([line.pos.x, line.pos.y], {icon: divIcon})
+    );
+  }
+
   // 鉄道路線の描画を行う
   drawTrainLine = () => {
     this.lines.forEach((line)=>{
+      // 路線名の描画をする
+      if(line.lineName && line.pos) {
+        this.setLineName(line);
+      }
       line.stations.forEach((station, index)=>{
         // ポップアップに表示するラベルを定める
         const stationLabel = station.label !== ''? station.label: '(駅名未定)';

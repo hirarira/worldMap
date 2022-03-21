@@ -20,6 +20,14 @@ html,body{
   font-size: 12px !important
 }
 
+.lineName {
+  text-align: center;
+  font-size: 18px !important;
+  font-weight: bold;
+  background-color: #FFFFFF;
+  border: solid #98fb98;
+}
+
 .normalMode {
   margin: 10px
 }
