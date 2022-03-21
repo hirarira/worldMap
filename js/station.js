@@ -100,20 +100,24 @@ class Station {
     this.isShow = !this.isShow;
   }
 
+  // 追加するレイヤーのタイプを選択する
+  addLayerInstance = (type)=>{
+    switch(type) {
+      case 'main':
+        return this.stationMarkers.main.layer;
+      case  'middle':
+        return this.stationMarkers.middle.layer;
+      case  'local':
+        return this.stationMarkers.local.layer;
+      default:
+        return this.stationMarkers.cityLocal.layer;
+    }
+  };
+
   // 駅の描画を行う
   setStationMarker = (params, popupBodyObject) => {
-    const addLayerInstance = (()=>{
-      switch(params.type) {
-        case 'main':
-          return this.stationMarkers.main.layer;
-        case  'middle':
-          return this.stationMarkers.middle.layer;
-        case  'local':
-          return this.stationMarkers.local.layer;
-        default:
-          return this.stationMarkers.cityLocal.layer;
-      }
-    })()
+    // 追加するレイヤーのタイプを選択する
+    const addLayerInstance = this.addLayerInstance(params.type);
     const stationIconList = {
         main: L.icon({
           iconUrl: './img/icon/station-03.png',
@@ -196,7 +200,8 @@ class Station {
       iconSize: [200, 33],
       iconAnchor: [75, -10]
     })
-    this.stationMarkers.local.layer.label.addLayer(
+    const layer = this.addLayerInstance(line.type);
+    layer.label.addLayer(
       L.marker([line.pos.x, line.pos.y], {icon: divIcon})
     );
   }
