@@ -5,8 +5,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="./style.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
     <script src="./js/layer.js"></script>
     <script src="./js/station.js"></script>
@@ -27,48 +26,58 @@
           </div>
         </div>
       </nav>
-      <div id="map"></div>
-      <div id="menu" class="container">
-        <div class="row">
-          <div class="col-sm-12">
-            <button class="btn-success" onclick="pushButton.changeRailway()">鉄道路線表示切り替え</button>
-            <button class="btn-success" onclick="pushButton.changeElevation()">標高表示切り替え</button>
-            <button class="btn-success" onclick="pushButton.changePlaceName()">地名表示切り替え</button>
-            <button class="btn-success" onclick="pushButton.changeDetailRailway()">旧・鉄道詳細路線表示切り替え<br>（ナーザダリ近郊のみ）</button>
-            <button class="btn-success" onclick="pushButton.changeStationMarker()">駅マーカー切り替え</button>
-          </div>
-          <div class="col-sm-12 distanceMode">
-            総距離: <span id="totalDistance">0</span> km
-            区間距離: <span id="sectionDistance">0</span> km
-            <button class="btn-success" onclick="pushButton.resetDistance()">距離測定をリセット</button>
-          </div>
-          <div class="col-sm-12 inputMode">
-            <form>
-              <div class="form-group row">
-                <label class="col-sm-4 col-form-label">次の駅名</label>
-                <div class="col-sm-8">
-                  <textarea cols="100" rows="5" class="form-control" id="nextStationName" placeholder="スタリカ"></textarea> 
+      <div id="main" class="container">
+        <div class="row main-row">
+          <!-- 左側メニュー -->
+          <div id="menu" class="col-2">
+            <!-- 表示切替 -->
+            <div class="btn-group-vertical btn-group-sm">
+              <button class="btn btn-success" onclick="pushButton.changeRailway()">鉄道路線表示切り替え</button>
+              <button class="btn btn-success" onclick="pushButton.changeElevation()">標高表示切り替え</button>
+              <button class="btn btn-success" onclick="pushButton.changePlaceName()">地名表示切り替え</button>
+              <button class="btn btn-success" onclick="pushButton.changeDetailRailway()">旧・鉄道詳細路線表示切り替え<br>（ナーザダリ近郊のみ）</button>
+              <button class="btn btn-success" onclick="pushButton.changeStationMarker()">駅マーカー切り替え</button>
+            </div>
+            <hr/>
+            <!-- モード切替 -->
+            <div class="btn-group-vertical btn-group-sm">
+              <button class="btn btn-outline-dark">
+                <a href="./">normalMode</a>
+              </button>
+              <button class="btn btn-outline-dark">
+                <a href="./?distanceMode=true">distanceMode</a>
+              </button>
+              <button class="btn btn-outline-dark">
+                <a href="./?inputMode=true">inputMode</a>
+              </button>
+            </div>
+            <hr/>
+            <!-- 距離測定モード -->
+            <div class="distanceMode">
+              <p>総距離: <span id="totalDistance">0</span> km</p>
+              <p>区間距離: <span id="sectionDistance">0</span> km</p>
+              <p><button class="btn-success" onclick="pushButton.resetDistance()">距離測定をリセット</button></p>
+            </div>
+            <!-- 路線構築モード -->
+            <div class="inputMode">
+              <form>
+                <div class="form-group row">
+                  <label class="col-sm-4 col-form-label">次の駅名</label>
+                  <div class="col-sm-8">
+                    <textarea cols="100" rows="5" class="form-control" id="nextStationName" placeholder="スタリカ"></textarea> 
+                  </div>
                 </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-sm-4 col-form-label">出力されたJSON</label>
-                <div class="col-sm-8">
-                  <input type="text" class="form-control" id="outputJSON">
+                <div class="form-group row">
+                  <label class="col-sm-4 col-form-label">出力されたJSON</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" id="outputJSON">
+                  </div>
                 </div>
-              </div>
-            </form>
+              </form>
+            </div>
           </div>
-          <div class="col-sm-12">
-            <a href="./">
-              <button class="btn-primary">normalMode</button>
-            </a>
-            <a href="./?distanceMode=true">
-              <button class="btn-primary">distanceMode</button>
-            </a>
-            <a href="./?inputMode=true">
-              <button class="btn-primary">inputMode</button>
-            </a>
-          </div>
+          <!-- 右側マップ -->
+          <div id="map" class="col-10"></div>
         </div>
       </div>
       <!-- ポップアップウィンドウ用のパーツ -->

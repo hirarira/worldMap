@@ -2,15 +2,25 @@ html,body{
   margin: 0px;
   padding: 0px;
 }
-#map {
-  width: 100%;
-  height: 80%;
+
+#main {
+  height: 100%;
+  max-width: 100%;
 }
+
+.main-row {
+  height: 100%;
+}
+
 #menu {
-  width: 100%;
-  height: 10%;
-  margin: 10px;
+  padding-top: 15px;
+  width: 20%;
 }
+
+#map {
+  width: 80%;
+}
+
 .divicon {
   text-align: center;
   background-color: #FFFFFF;
