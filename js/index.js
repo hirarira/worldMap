@@ -16,6 +16,7 @@ window.onload = () => {
   const changeMode = () => {
     $(".inputMode").hide();
     $(".distanceMode").hide();
+    $(".emphasisLineMode").hide();
     map.mode = mode;
     // 入力欄を表示にする
     if(mode === 'inputMode') {
@@ -24,6 +25,10 @@ window.onload = () => {
     // 距離測定欄を表示する
     if(mode === 'distanceMode') {
       $(".distanceMode").show();
+    }
+    // 路線強調欄を表示する
+    if(mode === 'emphasisLineMode') {    
+      $(".emphasisLineMode").show();
     }
   }
   const modeChange = {
@@ -39,6 +44,10 @@ window.onload = () => {
       mode = 'inputMode';
       changeMode();
     },
+    changeEmphasisLineMode: () => {
+      mode = 'emphasisLineMode';
+      changeMode();
+    }
   }
   pushButton = {
     ...pushButton,

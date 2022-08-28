@@ -1,6 +1,7 @@
 {
 	"lineName": "レトン線",
 	"lineColor": "#888888",
+	"number": "7",
 	"stations": [
 		{
 			"label": "レトン",

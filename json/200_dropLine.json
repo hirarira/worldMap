@@ -1,6 +1,7 @@
 {
 	"lineName": "ドロップ線",
 	"lineColor": "#888888",
+	"number": "200",
 	"stations": [
 		{
 			"label": "北ドノリ国境",

@@ -1,6 +1,7 @@
 {
 	"lineName": "ドーレル線",
 	"lineColor": "#888888",
+	"number": "15",
 	"stations": [
 		{
 			"label": "南ドーニグル",

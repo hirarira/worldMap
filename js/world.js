@@ -146,7 +146,7 @@ class LeafletMap {
 
   // マップ中をクリックした際に呼ばれるイベント
   onClickMap = (e) => {
-    if(this.mode === 'normalMode') {
+    if(['normalMode', 'emphasisLineMode'].includes(this.mode)) {
       return;
     }
     if(this.mode === 'inputMode') {

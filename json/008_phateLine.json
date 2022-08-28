@@ -1,6 +1,7 @@
 {
 	"lineName": "ピャーテ線",
 	"lineColor": "#888888",
+	"number": "8",
 	"stations": [
 		{
 			"label": "ミン",

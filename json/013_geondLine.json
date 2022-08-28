@@ -1,6 +1,7 @@
 {
 	"lineName": "ジオンド線",
 	"lineColor": "#888888",
+	"number": "13",
 	"stations": [
 		{
 			"label": "ジオンド",

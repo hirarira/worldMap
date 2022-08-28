@@ -52,7 +52,7 @@
               <button class="btn btn-outline-dark" onClick="pushButton.changeInputMode()">
                 鉄道路線作成モード
               </button>
-              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine()">
+              <button class="btn btn-outline-dark" onClick="pushButton.changeEmphasisLineMode()">
                 鉄道路線強調モード
               </button>
             </div>
@@ -76,6 +76,43 @@
                 </div>
               </form>
             </div>
+            <!-- 路線構築モード -->
+            <div class="emphasisLineMode btn-group-vertical btn-group-sm">
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine()">
+                路線強調解除
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine([1, 200])">
+                ドロップ線
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine([2])">
+                フェルファ線
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine([3])">
+                マシュリ沿岸線
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine([4])">
+                エニカル線
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine([5])">
+                ケーネル線
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine([6])">
+                ネロール線
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine([7])">
+                レトン線
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine([8])">
+                ピャーテ線
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine([9])">
+                オスタ線
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine([10])">
+                フェルツェン線
+              </button>
+            </div>
+            <!-- 路線構築モードここまで -->
           </div>
           <!-- 右側マップ -->
           <div id="map" class="col-10"></div>
@@ -127,6 +164,7 @@
           </div>
         </div>
       </div>
+      <!-- ポップアップウィンドウ用のパーツここまで -->
     </div>
   </body>
 </html>

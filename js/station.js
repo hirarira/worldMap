@@ -248,11 +248,24 @@ class Station {
   }
 
   // 鉄道路線の描画を行う
-  drawTrainLine = () => {
+    // emphasisLineNumberに引数がある場合、該当する路線だけを強調表示する
+  drawTrainLine = (emphasisLineNumberList = null) => {
     this.lines.forEach((line)=>{
       formatLines(line)
       .forEach((section)=>{
-        this.setTrainLine(section, line.lineColor);
+        const drawLineColor = (()=>{
+          // 引数がない時には設定されている路線の色を描画する
+          if(emphasisLineNumberList === null) {
+            return line.lineColor;
+          }
+          // 強調路線の場合
+          if(emphasisLineNumberList.includes(Number(line.number))) {
+            return '#ff0000';
+          }
+          // それ以外の場合
+          return '#888888';
+        })()
+        this.setTrainLine(section, drawLineColor);
       });
     });
     this.map.addLayer(this.sectionLayer);
@@ -301,7 +314,10 @@ class Station {
     this.drawStationMarker();
   }
 
-  emphasisLine = () => {
+  // 特定の路線だけを強調表示する
+  emphasisLine = (emphasisLineNumberList) => {
     this.map.removeLayer(this.sectionLayer);
+    this.drawTrainLine(emphasisLineNumberList);
+    this.map.addLayer(this.sectionLayer);
   }
 }

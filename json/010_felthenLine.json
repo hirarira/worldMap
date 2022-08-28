@@ -1,6 +1,7 @@
 {
 	"lineName": "フェルツェン線",
 	"lineColor": "#888888",
+	"number": "10",
 	"stations": [
 		{
 			"label": "オガル",

@@ -1,6 +1,7 @@
 {
 	"lineName": "湖南沿岸線",
 	"lineColor": "#888888",
+	"number": "11",
 	"stations": [
 		{
 			"label": "ドーニグル",
