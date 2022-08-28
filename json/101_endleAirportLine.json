@@ -1,6 +1,11 @@
 {
-	"lineName": "エンデル空港線",
+	"lineName": "エンデル鉄道空港線",
 	"lineColor": "#4169e1",
+	"pos": {
+		"x": -277.3929908366228,
+		"y": 85.45335965060333
+	},
+	"type": "cityLocal",
 	"stations": [
 		{
 			"label": "ダンツナ",
