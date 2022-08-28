@@ -9,30 +9,39 @@ let pushButton = {
   resetDistance: () => {}
 }
 
-window.onload = () => {  
-  // クエリパラメータの一覧を取得する
-  const params = new URLSearchParams(location.search);
-  const mode = (()=>{
-    if(params.get('inputMode') === 'true') {
-      return 'inputMode';
-    }
-    if(params.get('distanceMode') === 'true') {
-      return 'distanceMode';
-    }
-    return 'normalMode';
-  })()
-  // inputModeが有効でない場合には入力欄を非表示にする
-  if(mode !== 'inputMode') {
+window.onload = () => {
+  let mode = 'normalMode';
+  const changeMode = () => {
     $(".inputMode").hide();
-  }
-  // inputModeが有効のときには距離測定欄を非表示にする
-  if(mode !== 'distanceMode') {
     $(".distanceMode").hide();
+    // 入力欄を表示にする
+    if(mode === 'inputMode') {
+      $(".inputMode").show();
+    }
+    // 距離測定欄を表示する
+    if(mode === 'distanceMode') {
+      $(".distanceMode").show();
+    }
   }
   // LeafketMapを定義する
   const map = new LeafletMap(mode);
+  const modeChange = {
+    changeNoramalMode: () => {
+      mode = 'normal';
+      changeMode();
+    },
+    changeDistanceMode:  () => {
+      mode = 'distanceMode';
+      changeMode();
+    },
+    changeInputMode:  () => {
+      mode = 'inputMode';
+      changeMode();
+    },
+  }
   pushButton = {
     ...pushButton,
+    ...modeChange,
     changeRailway: map.changeRailway,
     changeElevation: map.changeElevation,
     changePlaceName: map.changePlaceName,
@@ -40,5 +49,7 @@ window.onload = () => {
     changeStationMarker: map.changeStationMarker,
     resetDistance: map.resetDistanceMarker
   }
+  // 初回読み込み時のモードチェンジ
+  changeMode();
 }
 
