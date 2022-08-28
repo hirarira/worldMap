@@ -1,6 +1,7 @@
 {
 	"lineName": "ムルベ鉄道本線",
 	"lineColor": "#ffa500",
+	"number": "260",
 	"stations": [
 		{
 			"label": "ケムル",

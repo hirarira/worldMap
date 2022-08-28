@@ -1,6 +1,7 @@
 {
 	"lineName": "ケーネル線",
 	"lineColor": "#888888",
+	"number": "5",
 	"stations": [
 		{
 			"label": "ドノリ",

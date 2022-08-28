@@ -1,6 +1,7 @@
 {
 	"lineName": "円央線",
 	"lineColor": "#888888",
+	"number": "12",
 	"stations": [
 		{
 			"label": "ファズシェ",

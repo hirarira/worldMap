@@ -1,6 +1,7 @@
 {
 	"lineName": "バカラ線",
 	"lineColor": "#888888",
+	"number": "205",
 	"stations": [
 		{
 			"label": "セマ",

@@ -1,6 +1,7 @@
 {
 	"lineName": "オスタ線",
 	"lineColor": "#888888",
+	"number": "9",
 	"stations": [
 		{
 			"label": "ピャーテ",

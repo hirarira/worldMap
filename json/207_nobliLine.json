@@ -1,6 +1,7 @@
 {
 	"lineName": "ノビュル線",
 	"lineColor": "#888888",
+	"number": "207",
 	"stations": [
 		{
 			"label": "ノビュル",

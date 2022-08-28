@@ -1,6 +1,7 @@
 {
 	"lineName": "ロスナル鉄道カラバ線",
 	"lineColor": "#ffd700",
+	"number": "113",
 	"stations": [
 		{
 			"label": "セエヨ",

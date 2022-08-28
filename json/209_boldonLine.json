@@ -1,6 +1,7 @@
 {
 	"lineName": "ボルドン線",
 	"lineColor": "#888888",
+	"number": "209",
 	"stations": [
 		{
 			"label": "セマ",

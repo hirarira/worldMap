@@ -1,6 +1,7 @@
 {
 	"lineName": "マシュリ沿岸線",
 	"lineColor": "#888888",
+	"number": "3",
 	"stations": [
 		{
 			"label": "ケーネル",

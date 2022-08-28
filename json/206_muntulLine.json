@@ -1,6 +1,7 @@
 {
   "lineName": "ムンツル線",
   "lineColor": "#888888",
+	"number": "206",
   "stations": [
     {
       "label": "ユヒガ",

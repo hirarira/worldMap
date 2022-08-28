@@ -1,6 +1,7 @@
 {
 	"lineName": "市営地下鉄モルド線",
 	"lineColor": "#8a2be2",
+	"number": "50",
 	"stations": [
 		{
 			"label": "ロソヨ",

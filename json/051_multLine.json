@@ -1,6 +1,7 @@
 {
 	"lineName": "市営地下鉄ムルト線",
 	"lineColor": "#4b0082",
+	"number": "51",
 	"stations": [
 		{
 			"label": "新ザフムヅ",

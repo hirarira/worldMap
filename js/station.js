@@ -4,6 +4,7 @@ class Station {
   constructor(map) {
     this.map = map;
     this.sections = [];
+    this.sectionLayer = L.featureGroup();
     // 表示するかどうか
     this.isShow = true;
     // 駅マーカー一覧
@@ -81,8 +82,9 @@ class Station {
     })
     .then((dataAll)=>{
       this.lines = dataAll;
-      this.drawTrainLine(dataAll);
-      this.showStationMarker();
+      this.makeStationPopupMarker()
+      this.drawTrainLine();
+      this.drawStationMarker();
     })
   }
   
@@ -188,8 +190,8 @@ class Station {
       weight: 5,
       color: lineColor
     }
-    const polyline = L.polyline(latlng, lineOption ).addTo(this.map);
-    this.sections.push(polyline);
+    const polyline = L.polyline(latlng, lineOption)
+    this.sectionLayer.addLayer(polyline);
   }
 
   // 路線名の描画をする
@@ -206,8 +208,8 @@ class Station {
     );
   }
 
-  // 鉄道路線の描画を行う
-  drawTrainLine = () => {
+  // 駅マーカーのポップアップオブジェクトを作成する
+  makeStationPopupMarker = () => {
     this.lines.forEach((line)=>{
       // 路線名の描画をする
       if(line.lineName && line.pos) {
@@ -242,15 +244,35 @@ class Station {
         }
         this.setStationMarker(station, popupBodyObject);
       });
-      formatLines(line)
-      .forEach((section)=>{
-        this.setTrainLine(section, line.lineColor);
-      });
     });
   }
 
-  // 駅マーカーとラインを描画する
-  showStationMarker = () => {
+  // 鉄道路線の描画を行う
+    // emphasisLineNumberに引数がある場合、該当する路線だけを強調表示する
+  drawTrainLine = (emphasisLineNumberList = null) => {
+    this.lines.forEach((line)=>{
+      formatLines(line)
+      .forEach((section)=>{
+        const drawLineColor = (()=>{
+          // 引数がない時には設定されている路線の色を描画する
+          if(emphasisLineNumberList === null) {
+            return line.lineColor;
+          }
+          // 強調路線の場合
+          if(emphasisLineNumberList.includes(Number(line.number))) {
+            return '#ff0000';
+          }
+          // それ以外の場合
+          return '#888888';
+        })()
+        this.setTrainLine(section, drawLineColor);
+      });
+    });
+    this.map.addLayer(this.sectionLayer);
+  }
+
+  // 駅マーカーを描画する
+  drawStationMarker = () => {
     const zoom  = this.map.getZoom();
     // 駅の規模と拡大率に合わせて表示する駅を変更する
     Object.keys(this.stationMarkers).forEach((type)=>{
@@ -278,4 +300,24 @@ class Station {
     })
   }
 
+  // 鉄道路線を非表示にする
+  hideLines = () => {
+    this.isShow = false;
+    this.map.removeLayer(this.sectionLayer);
+    this.drawStationMarker();
+  }
+
+  // 鉄道路線を表示する
+  showLines = () => {
+    this.isShow = true;
+    this.map.addLayer(this.sectionLayer);
+    this.drawStationMarker();
+  }
+
+  // 特定の路線だけを強調表示する
+  emphasisLine = (emphasisLineNumberList) => {
+    this.map.removeLayer(this.sectionLayer);
+    this.drawTrainLine(emphasisLineNumberList);
+    this.map.addLayer(this.sectionLayer);
+  }
 }

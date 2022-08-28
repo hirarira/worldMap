@@ -1,6 +1,7 @@
 {
 	"lineName": "エンデル鉄道ドレッジ線",
 	"lineColor": "#4169e1",
+	"number": "103",
 	"stations": [
 		{
 			"label": "ドレッジ",

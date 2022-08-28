@@ -1,6 +1,7 @@
 {
 	"lineName": "エニカル湖岸鉄道線",
 	"lineColor": "#9932cc",
+	"number": "130",
 	"stations": [
 		{
 			"label": "ミュジョール",

@@ -1,6 +1,7 @@
 {
 	"lineName": "ユーカム線",
 	"lineColor": "#888888",
+	"number": "203",
 	"stations": [
 		{
 			"label": "ユヒガ大橋",

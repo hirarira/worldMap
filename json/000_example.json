@@ -1,6 +1,7 @@
 {
 	"lineName": "サンプル線",
 	"lineColor": "#888888",
+	"number": "0",
 	"pos": {
 		"x": 0,
 		"y": 0

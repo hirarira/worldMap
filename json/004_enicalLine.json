@@ -1,6 +1,7 @@
 {
 	"lineName": "エニカル線",
 	"lineColor": "#888888",
+	"number": "4",
 	"stations": [
 		{
 			"label": "ジオンド",

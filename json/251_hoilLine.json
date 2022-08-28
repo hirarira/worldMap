@@ -1,6 +1,7 @@
 {
 	"lineName": "エンデル鉄道ホイル線",
 	"lineColor": "#4169e1",
+	"number": "251",
 	"stations": [
 		{
 			"label": "レーナル",

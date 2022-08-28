@@ -37,18 +37,23 @@
               <button class="btn btn-success" onclick="pushButton.changePlaceName()">地名表示切り替え</button>
               <button class="btn btn-success" onclick="pushButton.changeDetailRailway()">旧・鉄道詳細路線表示切り替え<br>（ナーザダリ近郊のみ）</button>
               <button class="btn btn-success" onclick="pushButton.changeStationMarker()">駅マーカー切り替え</button>
+              <button class="btn btn-success" onclick="pushButton.hideLines()">鉄道路線を非表示にする</button>
+              <button class="btn btn-success" onclick="pushButton.showLines()">鉄道路線を表示する</button>
             </div>
             <hr/>
             <!-- モード切替 -->
             <div class="btn-group-vertical btn-group-sm">
               <button class="btn btn-outline-dark" onClick="pushButton.changeNoramalMode()">
-                normalMode
+                閲覧モード
               </button>
               <button class="btn btn-outline-dark" onClick="pushButton.changeDistanceMode()">
-                distanceMode
+                距離測定モード
               </button>
               <button class="btn btn-outline-dark" onClick="pushButton.changeInputMode()">
-                inputMode
+                鉄道路線作成モード
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.changeEmphasisLineMode()">
+                鉄道路線強調モード
               </button>
             </div>
             <hr/>
@@ -71,6 +76,154 @@
                 </div>
               </form>
             </div>
+            <!-- 路線構築モード -->
+            <div class="emphasisLineMode btn-group-vertical btn-group-sm">
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine()">
+                路線強調解除
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine([1, 200])">
+                ドロップ線
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine([2])">
+                フェルファ線
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine([3])">
+                マシュリ沿岸線
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine([4])">
+                エニカル線
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine([5])">
+                ケーネル線
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine([6])">
+                ネロール線
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine([7])">
+                レトン線
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine([8])">
+                ピャーテ線
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine([9])">
+                オスタ線
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine([10])">
+                フェルツェン線
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine([11])">
+                湖南沿岸線
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine([12])">
+                円央線
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine([13])">
+                ジオンド線
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine([14])">
+                チクサ線
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine([15])">
+                ドーレル線
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine([50])">
+                市営地下鉄モルド線
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine([51])">
+                市営地下鉄ムルト線
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine([100])">
+                エンデル鉄道本線
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine([101])">
+                エンデル鉄道空港線
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine([103])">
+                エンデル鉄道ドレッジ線
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine([104])">
+                エンデル鉄道ダーニェ競馬場線
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine([105, 250])">
+                エンデル鉄道ユヒガ本線
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine([110])">
+                ロスナル本線
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine([111])">
+                ロスナル鉄道バネット線
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine([112])">
+                ロスナル鉄道ムスジョル線
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine([113])">
+                ロスナル鉄道カラバ線
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine([114])">
+                ロスナル鉄道オガル線
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine([120])">
+                エスティマ鉄道本線
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine([130])">
+                エニカル湖岸鉄道線
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine([140])">
+                ピョーリ沿海鉄道
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine([150])">
+                フミョール鉄道線
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine([160])">
+                西ドノリ鉄道本線
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine([201])">
+                ハライド線
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine([202])">
+                ケーカム線
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine([203])">
+                ユーカム線
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine([204])">
+                ノザーランド線
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine([205])">
+                バカラ線
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine([206])">
+                ムンツル線
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine([207])">
+                ノビュル線
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine([208])">
+                ダラス空港線
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine([209])">
+                ボルドン線
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine([210])">
+                トーラー線
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine([211])">
+                ニコシア線
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine([212])">
+                ヘント線
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine([213])">
+                ナルスト線
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine([251])">
+                エンデル鉄道ホイル線
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine([260])">
+                ムルベ鉄道本線
+              </button>
+            </div>
+            <!-- 路線構築モードここまで -->
           </div>
           <!-- 右側マップ -->
           <div id="map" class="col-10"></div>
@@ -122,6 +275,7 @@
           </div>
         </div>
       </div>
+      <!-- ポップアップウィンドウ用のパーツここまで -->
     </div>
   </body>
 </html>

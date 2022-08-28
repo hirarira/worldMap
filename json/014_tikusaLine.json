@@ -1,6 +1,7 @@
 {
 	"lineName": "チクサ線",
 	"lineColor": "#888888",
+	"number": "14",
 	"stations": [
 		{
 			"label": "シドネイ",

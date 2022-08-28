@@ -1,6 +1,7 @@
 {
 	"lineName": "ネロール線",
 	"lineColor": "#888888",
+	"number": "6",
 	"stations": [
 		{
 			"label": "ネスト",

@@ -1,6 +1,7 @@
 {
 	"lineName": "ロスナル鉄道ムスジョル線",
 	"lineColor": "#ffd700",
+	"number": "112",
 	"stations": [
 		{
 			"label": "ゼカン",
