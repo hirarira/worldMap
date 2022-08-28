@@ -4,6 +4,7 @@ class Station {
   constructor(map) {
     this.map = map;
     this.sections = [];
+    this.sectionLayer = L.featureGroup();
     // 表示するかどうか
     this.isShow = true;
     // 駅マーカー一覧
@@ -81,8 +82,9 @@ class Station {
     })
     .then((dataAll)=>{
       this.lines = dataAll;
-      this.drawTrainLine(dataAll);
-      this.showStationMarker();
+      this.makeStationPopupMarker()
+      this.drawTrainLine();
+      this.drawStationMarker();
     })
   }
   
@@ -188,8 +190,8 @@ class Station {
       weight: 5,
       color: lineColor
     }
-    const polyline = L.polyline(latlng, lineOption ).addTo(this.map);
-    this.sections.push(polyline);
+    const polyline = L.polyline(latlng, lineOption)
+    this.sectionLayer.addLayer(polyline);
   }
 
   // 路線名の描画をする
@@ -206,8 +208,8 @@ class Station {
     );
   }
 
-  // 鉄道路線の描画を行う
-  drawTrainLine = () => {
+  // 駅マーカーのポップアップオブジェクトを作成する
+  makeStationPopupMarker = () => {
     this.lines.forEach((line)=>{
       // 路線名の描画をする
       if(line.lineName && line.pos) {
@@ -242,15 +244,22 @@ class Station {
         }
         this.setStationMarker(station, popupBodyObject);
       });
+    });
+  }
+
+  // 鉄道路線の描画を行う
+  drawTrainLine = () => {
+    this.lines.forEach((line)=>{
       formatLines(line)
       .forEach((section)=>{
         this.setTrainLine(section, line.lineColor);
       });
     });
+    this.map.addLayer(this.sectionLayer);
   }
 
-  // 駅マーカーとラインを描画する
-  showStationMarker = () => {
+  // 駅マーカーを描画する
+  drawStationMarker = () => {
     const zoom  = this.map.getZoom();
     // 駅の規模と拡大率に合わせて表示する駅を変更する
     Object.keys(this.stationMarkers).forEach((type)=>{
@@ -278,4 +287,21 @@ class Station {
     })
   }
 
+  // 鉄道路線を非表示にする
+  hideLines = () => {
+    this.isShow = false;
+    this.map.removeLayer(this.sectionLayer);
+    this.drawStationMarker();
+  }
+
+  // 鉄道路線を表示する
+  showLines = () => {
+    this.isShow = true;
+    this.map.addLayer(this.sectionLayer);
+    this.drawStationMarker();
+  }
+
+  emphasisLine = () => {
+    this.map.removeLayer(this.sectionLayer);
+  }
 }

@@ -37,18 +37,23 @@
               <button class="btn btn-success" onclick="pushButton.changePlaceName()">地名表示切り替え</button>
               <button class="btn btn-success" onclick="pushButton.changeDetailRailway()">旧・鉄道詳細路線表示切り替え<br>（ナーザダリ近郊のみ）</button>
               <button class="btn btn-success" onclick="pushButton.changeStationMarker()">駅マーカー切り替え</button>
+              <button class="btn btn-success" onclick="pushButton.hideLines()">鉄道路線を非表示にする</button>
+              <button class="btn btn-success" onclick="pushButton.showLines()">鉄道路線を表示する</button>
             </div>
             <hr/>
             <!-- モード切替 -->
             <div class="btn-group-vertical btn-group-sm">
               <button class="btn btn-outline-dark" onClick="pushButton.changeNoramalMode()">
-                normalMode
+                閲覧モード
               </button>
               <button class="btn btn-outline-dark" onClick="pushButton.changeDistanceMode()">
-                distanceMode
+                距離測定モード
               </button>
               <button class="btn btn-outline-dark" onClick="pushButton.changeInputMode()">
-                inputMode
+                鉄道路線作成モード
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.emphasisLine()">
+                鉄道路線強調モード
               </button>
             </div>
             <hr/>

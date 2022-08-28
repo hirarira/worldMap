@@ -223,7 +223,7 @@ class LeafletMap {
 
   //  マップの拡大率を変更したときに呼ばれるイベント
   onZoomMap = (e) => {
-    this.station.showStationMarker();
+    this.station.drawStationMarker();
   }
 
   // 描画をし直す
@@ -249,21 +249,25 @@ class LeafletMap {
     this.show.train = !this.show.train;
     this.redrawLayerys();
   }
+  // ナーザダリ近郊路線図表示切り替え
   changeDetailRailway = () => {
     this.show.trainDetail = !this.show.trainDetail;
     this.redrawLayerys();
   }
+  // 標高表示切り替え
   changeElevation = () => {
     this.show.elevation = !this.show.elevation;
     this.redrawLayerys();
   }
+  // 地名表示切り替え
   changePlaceName = () => {
     this.show.placeName = !this.show.placeName;
     this.redrawLayerys();
   }
+  // 駅マーカー切り替え
   changeStationMarker = () => {
     this.station.swichShowMarker();
-    this.station.showStationMarker();
+    this.station.drawStationMarker();
   }
 }
 
