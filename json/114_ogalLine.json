@@ -1,6 +1,7 @@
 {
 	"lineName": "ロスナル鉄道オガル線",
 	"lineColor": "#ffd700",
+	"number": "114",
 	"stations": [
 			{
 				"label": "ネギャルムイ",

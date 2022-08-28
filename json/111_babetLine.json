@@ -1,6 +1,7 @@
 {
 	"lineName": "ロスナル鉄道バネット線",
 	"lineColor": "#ffd700",
+	"number": "111",
 	"stations": [
 		{
 			"label": "ヒェチ",

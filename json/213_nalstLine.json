@@ -1,6 +1,7 @@
 {
 	"lineName": "ナルスト線",
 	"lineColor": "#888888",
+	"number": "213",
 	"stations": [
 		{
 			"label": "ワチツ",

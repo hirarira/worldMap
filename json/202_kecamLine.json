@@ -1,6 +1,7 @@
 {
 	"lineName": "ケーカム線",
 	"lineColor": "#888888",
+	"number": "202",
 	"stations": [
 		{
 			"label": "ケーネル",

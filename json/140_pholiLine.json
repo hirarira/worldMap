@@ -1,6 +1,7 @@
 {
 	"lineName": "ピョーリ沿海鉄道",
 	"lineColor": "#ee82ee",
+	"number": "140",
 	"stations": [
 		{
 			"label": "ナッサン",

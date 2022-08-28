@@ -1,6 +1,7 @@
 {
 	"lineName": "ハライド線",
 	"lineColor": "#888888",
+	"number": "201",
 	"stations": [
 		{
 			"label": "カドゾフ",

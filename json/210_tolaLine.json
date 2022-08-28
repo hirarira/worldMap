@@ -1,6 +1,7 @@
 {
 	"lineName": "トーラー線",
 	"lineColor": "#888888",
+	"number": "210",
 	"stations": [
 		{
 			"label": "セマ",

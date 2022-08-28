@@ -1,6 +1,7 @@
 {
 	"lineName": "ニコシア線",
 	"lineColor": "#888888",
+	"number": "211",
 	"stations": [
 		{
 			"label": "ノビュル",

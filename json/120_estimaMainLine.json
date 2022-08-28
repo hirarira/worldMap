@@ -1,6 +1,7 @@
 {
 	"lineName": "エスティマ鉄道本線",
 	"lineColor": "#ff8c00",
+	"number": "120",
 	"stations": [
 		{
 			"label": "新ザフムヅ",

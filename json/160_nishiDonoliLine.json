@@ -1,6 +1,7 @@
 {
 	"lineName": "西ドノリ鉄道本線",
 	"lineColor": "#c71585",
+	"number": "160",
 	"stations": [
 		{
 			"label": "ベンス",

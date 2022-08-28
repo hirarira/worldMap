@@ -1,6 +1,7 @@
 {
 	"lineName": "エンデル鉄道ユヒガ本線",
 	"lineColor": "#4169e1",
+	"number": "250",
 	"stations": [
 		{
 			"label": "南ノラト国境",

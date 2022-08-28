@@ -1,6 +1,7 @@
 {
 	"lineName": "フミョール鉄道線",
 	"lineColor": "#98fb98",
+	"number": "150",
 	"stations": [
 		{
 			"label": "レルザ",

@@ -1,6 +1,7 @@
 {
 	"lineName": "ノザーランド線",
 	"lineColor": "#888888",
+	"number": "204",
 	"stations": [
 		{
 			"label": "カム",

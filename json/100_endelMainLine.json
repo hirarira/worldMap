@@ -1,6 +1,7 @@
 {
 	"lineName": "エンデル鉄道本線",
 	"lineColor": "#4169e1",
+	"number": "100",
 	"stations": [
 		{
 			"label": "ナーザダリ",

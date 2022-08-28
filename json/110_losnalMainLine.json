@@ -1,6 +1,7 @@
 {
 	"lineName": "ロスナル本線",
 	"lineColor": "#ffd700",
+	"number": "110",
 	"stations": [
 		{
 			"label": "ヘムレル",
