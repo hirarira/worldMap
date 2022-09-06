@@ -55,11 +55,18 @@ class LeafletMap {
     }
     // 各レイヤー
     this.layers = {
+      // 背景
       base: new Layer('base', defaultOption),
+      // 鉄道路線（画像）
       train: new Layer('train', defaultOption),
+      // 標高
       elevation: new Layer('elevation', defaultHide),
+      // 地点名・国境（画像）
       placeName: new Layer('placeName', defaultOption),
+      // 鉄道路線
       trainDetail: new Layer('trainDetail', trainDetail),
+      // 国境
+      border: new Layer('border', defaultOption),
       // dummy: new Layer('dummy', dummy),
     }
     // 表示可能範囲
@@ -74,12 +81,14 @@ class LeafletMap {
       elevation: false,
       placeName: true,
       trainDetail: false,
-      stationMarker: true
+      stationMarker: true,
+      border: true
     }
     this.lines = [];
     // 新しくクリックして作られた駅一覧
     this.clickPositonList = [];
     this.station = new Station(this.map);
+    this.border = new Border(this.map);
     // 新しくクリックされたポイント一覧
     this.clickDistanceList = {
       totalDistance: 0,
@@ -234,7 +243,7 @@ class LeafletMap {
         this.layers[x].hyde();
       }
     });
-    const showOrderList = ['elevation', 'placeName', 'train' , 'trainDetail'];
+    const showOrderList = ['elevation', 'placeName','border', 'train' , 'trainDetail'];
     showOrderList.forEach((x)=>{
       if(this.show[x]) {
         this.layers[x].show();

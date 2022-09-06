@@ -90,7 +90,7 @@ class Station {
   
   readStationFile = async (file) => {
     return new Promise((resolve, reject) => {
-      const url = `./json/${file}`;
+      const url = `./json/station/${file}`;
       $.getJSON(url, (data) => {
         resolve(data);
       });
