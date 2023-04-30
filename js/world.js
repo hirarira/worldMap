@@ -41,19 +41,17 @@ class LeafletMap {
       ...defaultOption,
       isShow: false
     }
-    const trainDetail = {
-      ...defaultOption,
-      pathType: 'zoom',
-      minNativeZoom: 2,
-      maxNativeZoom: 6,
-    }
     const dummy = {
       ...defaultOption,
       pathType: 'dummy',
       minNativeZoom: 1,
       maxNativeZoom: 10
     }
-    // 各レイヤー
+
+    /** 
+     * 画像レイヤー
+     * ラインやポリゴンによって構成されるレイヤーは別の管轄となる
+     */
     this.layers = {
       // 背景
       base: new Layer('base', defaultOption),
@@ -62,13 +60,17 @@ class LeafletMap {
       // 標高
       elevation: new Layer('elevation', defaultHide),
       // 地点名・国境（画像）
-      placeName: new Layer('placeName', defaultOption),
-      // 鉄道路線
-      trainDetail: new Layer('trainDetail', trainDetail),
-      // 国境
-      border: new Layer('border', defaultOption),
+      placeName: new Layer('placeName', defaultOption),    
+      /** 距離凡例レイヤー */
+      distanceExample: new DistanceExample(this.map)
       // dummy: new Layer('dummy', dummy),
     }
+    
+    /** 駅・路線情報レイヤー */
+    this.station = new Station(this.map);
+    /** 国境・行政区分区境レイヤー */
+    this.border = new Border(this.map);
+
     // 表示可能範囲
     this.map.setMaxBounds(new L.LatLngBounds([0,0], [-320,512]));
     const options = {
@@ -87,8 +89,7 @@ class LeafletMap {
     this.lines = [];
     // 新しくクリックして作られた駅一覧
     this.clickPositonList = [];
-    this.station = new Station(this.map);
-    this.border = new Border(this.map);
+
     // 新しくクリックされたポイント一覧
     this.clickDistanceList = {
       totalDistance: 0,
@@ -96,61 +97,11 @@ class LeafletMap {
       layer: L.featureGroup()
     };
     this.map.addLayer(this.clickDistanceList.layer);
-    // 距離凡例の描画
-    this.showDistanceExample();
     // クリックした地点情報を表示する
     this.map.on('click', this.onClickMap);
     this.map.on('zoomend',  this.onZoomMap)
     // 描画をし直す
     this.redrawLayerys();
-  }
-
-  // 距離凡例を表示する
-  showDistanceExample = () => {
-    const tenKm = LeafletMap.ONE_KM_TO_MAPDISTANCE * 10;
-    const initX = 54;
-    L.polygon([
-        [-260, initX],
-        [-260, initX+(tenKm*12)],
-        [-268, initX+(tenKm*12)],
-        [-268, initX],
-      ],
-      {
-        color: '#bbbbbb',
-        fillColor: '#888888',
-        fillOpacity: 0.3,
-      }
-    ).addTo(this.map);
-    [...Array(11)].forEach((x, a)=>{
-      const addX = (a+1)*tenKm;
-      L.marker(
-        [-266, initX+addX],
-        {icon: L.divIcon(
-          {
-            html: `${a*10} km`,
-            className: 'divExp',
-            iconSize: [50, 20],
-            iconAnchor: [10, -10]
-          }
-        )}
-      )
-      .addTo(this.map);
-    })
-    const lineOption = {
-      weight: 5,
-      color: "#000000"
-    }
-    const latlngs = [...Array(11)].map((x,a)=>{
-      return [[-262, initX+((a+1)*tenKm)], [-266, initX+((a+1)*tenKm)]];
-    });
-    latlngs.push(
-      [
-        [-264, (initX+(1*tenKm))],
-        [-264, (initX+(11*tenKm))]
-      ]
-    )
-    L.polyline(latlngs, lineOption)
-    .addTo(this.map);
   }
 
   // マップ中をクリックした際に呼ばれるイベント
@@ -243,7 +194,7 @@ class LeafletMap {
         this.layers[x].hyde();
       }
     });
-    const showOrderList = ['elevation', 'placeName', 'border', 'train' , 'trainDetail'];
+    const showOrderList = ['elevation', 'placeName', 'train'];
     showOrderList.forEach((x)=>{
       if(this.show[x]) {
         this.layers[x].show();
