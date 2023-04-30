@@ -243,7 +243,7 @@ class LeafletMap {
         this.layers[x].hyde();
       }
     });
-    const showOrderList = ['elevation', 'placeName','border', 'train' , 'trainDetail'];
+    const showOrderList = ['elevation', 'placeName', 'border', 'train' , 'trainDetail'];
     showOrderList.forEach((x)=>{
       if(this.show[x]) {
         this.layers[x].show();

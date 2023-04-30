@@ -34,8 +34,8 @@ class Station {
       // ローカル駅
       local: {
         zoom: {
-          marker: 4,
-          label: 5
+          marker: 5,
+          label: 6
         },
         layer: {
           marker: L.featureGroup(),
@@ -45,8 +45,8 @@ class Station {
       // 大都市近郊小駅
       cityLocal: {
         zoom: {
-          marker: 5,
-          label: 6
+          marker: 6,
+          label: 7
         },
         layer: {
           marker: L.featureGroup(),
@@ -248,7 +248,7 @@ class Station {
   }
 
   // 鉄道路線の描画を行う
-    // emphasisLineNumberに引数がある場合、該当する路線だけを強調表示する
+  // emphasisLineNumberに引数がある場合、該当する路線だけを強調表示する
   drawTrainLine = (emphasisLineNumberList = null) => {
     this.lines.forEach((line)=>{
       formatLines(line)

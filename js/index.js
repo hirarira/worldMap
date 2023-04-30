@@ -13,6 +13,8 @@ window.onload = () => {
   let mode = 'normalMode';
   // LeafketMapを定義する
   const map = new LeafletMap(mode);
+
+  /** 初回・モード切替時に呼ばれる */
   const changeMode = () => {
     $(".inputMode").hide();
     $(".distanceMode").hide();
@@ -31,6 +33,7 @@ window.onload = () => {
       $(".emphasisLineMode").show();
     }
   }
+
   const modeChange = {
     changeNoramalMode: () => {
       mode = 'normal';
