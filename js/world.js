@@ -109,17 +109,21 @@ class LeafletMap {
     if(['normalMode', 'emphasisLineMode'].includes(this.mode)) {
       return;
     }
-    if(this.mode === 'inputMode') {
-      this.setNewStation(e)
-    }
     // 最後にクリックしたポイントを取り出す
     const beforePoint = this.clickDistanceList.points.slice(-1)[0];
     const latlng = [e.latlng.lat, e.latlng.lng];
     this.clickDistanceList.points.push(latlng)
-    if(this.mode !== 'inputMode') {
-      this.clickDistanceList.layer.addLayer(
-        L.marker(latlng)
-      )
+    switch(this.mode) {
+      // 鉄道路線追加モードの場合
+      case 'inputMode':
+        this.setNewStation(e);
+        break;
+      // それ以外のモードの場合
+      default:
+        this.clickDistanceList.layer.addLayer(
+          L.marker(latlng)
+        )
+        break;
     }
     // 2回目以降のクリックならラインを引く
     if(beforePoint) {
@@ -134,12 +138,26 @@ class LeafletMap {
       this.clickDistanceList.layer.addLayer(
         L.polyline(linePos, lineOption)
       );
-      // 距離を求める
-      const sectionDistance = calcDistance(beforePoint, latlng);
-      this.clickDistanceList.totalDistance += sectionDistance;
-      const showDistance = Math.round(this.clickDistanceList.totalDistance*1000)/1000;
-      $('#totalDistance').text(showDistance);
-      $('#sectionDistance').text(sectionDistance);
+      switch(this.mode) {
+        /** 距離測定モードの場合 */
+        case 'distanceMode':
+          // 距離を求める
+          const sectionDistance = calcDistance(beforePoint, latlng);
+          this.clickDistanceList.totalDistance += sectionDistance;
+          const showDistance = Math.round(this.clickDistanceList.totalDistance*1000)/1000;
+          $('#totalDistance').text(showDistance);
+          $('#sectionDistance').text(sectionDistance);
+          break;
+        /** 行政区分作成モードの場合 */
+        case 'makePrefectureMode':
+          this.clickPositonList.push([
+            e.latlng.lat,
+            e.latlng.lng
+          ]);
+          // クリック中の座標情報をJSON文字列として保存する
+          $('#outputPrefectureJSON').val(JSON.stringify(this.clickPositonList));
+          break;
+      }
     }
   }
 
@@ -153,6 +171,8 @@ class LeafletMap {
       layer: L.featureGroup()
     };
     this.map.addLayer(this.clickDistanceList.layer);
+    // 路線作成モードの情報もリセットする
+    this.clickPositonList = [];
   }
 
   // マップ上に新しい駅をプロットする（inputModeのみ）

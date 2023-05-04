@@ -19,18 +19,25 @@ window.onload = () => {
     $(".inputMode").hide();
     $(".distanceMode").hide();
     $(".emphasisLineMode").hide();
+    $(".makePrefectureMode").hide();
     map.mode = mode;
-    // 入力欄を表示にする
-    if(mode === 'inputMode') {
-      $(".inputMode").show();
-    }
-    // 距離測定欄を表示する
-    if(mode === 'distanceMode') {
-      $(".distanceMode").show();
-    }
-    // 路線強調欄を表示する
-    if(mode === 'emphasisLineMode') {    
-      $(".emphasisLineMode").show();
+    switch(mode) {
+      // 入力欄を表示にする
+      case 'inputMode':
+        $(".inputMode").show();
+        break;
+      // 距離測定欄を表示する
+      case 'distanceMode':
+        $(".distanceMode").show();
+        break;
+      // 路線強調欄を表示する
+      case 'emphasisLineMode':
+        $(".emphasisLineMode").show();
+        break;
+      // 行政区分作成モード
+      case 'makePrefectureMode':
+        $(".makePrefectureMode").show();
+        break;
     }
   }
 
@@ -49,6 +56,10 @@ window.onload = () => {
     },
     changeEmphasisLineMode: () => {
       mode = 'emphasisLineMode';
+      changeMode();
+    },
+    changeMakePrefectureMode: () => {
+      mode = 'makePrefectureMode';
       changeMode();
     }
   }

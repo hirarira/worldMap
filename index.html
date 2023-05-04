@@ -59,6 +59,9 @@
               <button class="btn btn-outline-dark" onClick="pushButton.changeEmphasisLineMode()">
                 鉄道路線強調モード
               </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.changeMakePrefectureMode()">
+                行政区分作成モード
+              </button>
             </div>
             <hr/>
             <!-- 距離測定モード -->
@@ -189,6 +192,17 @@
               </div>
             </div>
             <!-- 路線構築モードここまで -->
+            <!-- 行政区分作成モード -->
+            <div class="makePrefectureMode">
+              <form>
+                <label class="col-form-label">出力されたJSON</label>
+                <div>
+                  <input type="text" class="form-control" id="outputPrefectureJSON">
+                </div>
+              </form>
+              <p><button class="btn-success" onclick="pushButton.resetDistance()">作成の行政区分をリセットする</button></p>
+            </div>
+            <!-- 行政区分作成モードここまで -->
           </div>
           <!-- 右側マップ -->
           <div id="map" class="col-10"></div>
