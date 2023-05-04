@@ -21,6 +21,8 @@ window.onload = () => {
     $(".emphasisLineMode").hide();
     $(".makePrefectureMode").hide();
     map.mode = mode;
+    /** マップ中のモード切替関数を呼ぶ */
+    map.changeMode();
     switch(mode) {
       // 入力欄を表示にする
       case 'inputMode':

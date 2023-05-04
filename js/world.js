@@ -16,11 +16,25 @@ const formatLines = (line) => {
   });
 }
 
+/** マップ表示Class */
 class LeafletMap {
-  // 1kmに相当するマップ上の距離1
+  /**
+   * @type {number} 1kmに相当するマップ上の距離1
+   */
   static ONE_KM_TO_MAPDISTANCE = 0.128;
+  /**
+   * @param {string} mode 
+   */
   constructor(mode) {
+    /**
+     * マップ表示モード
+     * @type {string}
+     * normal | distanceMode | inputMode | emphasisLineMode | makePrefectureMode
+     */
     this.mode = mode;
+    /**
+     * @type {L.map}
+     */
     this.map = L.map('map', {
       minZoom: 1,
       maxZoom: 10,
@@ -53,31 +67,27 @@ class LeafletMap {
      * ラインやポリゴンによって構成されるレイヤーは別の管轄となる
      */
     this.layers = {
-      // 背景
+      /** 背景*/
       base: new Layer('base', defaultOption),
-      // 鉄道路線（画像）
+      /** 鉄道路線（画像） */ 
       train: new Layer('train', defaultOption),
-      // 標高
+      /** 標高 */
       elevation: new Layer('elevation', defaultHide),
-      // 地点名・国境（画像）
+      /** 地点名・国境（画像）*/
       placeName: new Layer('placeName', defaultOption),    
       /** 距離凡例レイヤー */
-      distanceExample: new DistanceExample(this.map)
+      distanceExample: new DistanceExample(this.map),
+      /** 国境・行政区分区境レイヤー */
+      border: new Border(this.map)
       // dummy: new Layer('dummy', dummy),
     }
     
     /** 駅・路線情報レイヤー */
     this.station = new Station(this.map);
-    /** 国境・行政区分区境レイヤー */
-    this.border = new Border(this.map);
 
-    // 表示可能範囲
+    /** 表示可能範囲 */
     this.map.setMaxBounds(new L.LatLngBounds([0,0], [-320,512]));
-    const options = {
-      position: 'bottomleft',
-      numDigits: 7
-    }
-    // 現在表示中の座標情報を表示する
+    /** 現在表示中の座標情報を表示する */
     this.show = {
       train: true,
       elevation: false,
@@ -248,6 +258,17 @@ class LeafletMap {
   changeStationMarker = () => {
     this.station.swichShowMarker();
     this.station.drawStationMarker();
+  }
+  /** モードチェンジ */
+  changeMode = () => {
+    switch(this.mode) {
+      case 'makePrefectureMode':
+        this.layers.border.onMakePrefectureMode();
+        break;
+      default:
+        this.layers.border.offMakePrefectureMode();
+        break;
+    }
   }
 }
 

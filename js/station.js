@@ -1,5 +1,6 @@
 "use strict";
 
+/** 鉄道路線レイヤー */
 class Station {
   constructor(map) {
     this.map = map;
