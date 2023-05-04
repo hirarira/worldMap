@@ -5,7 +5,14 @@ class Border {
   constructor(map) {
     this.map = map;
     this.borderFiles = [];
-    this.sectionLayer = L.featureGroup();
+    this.sectionLayers = {
+      /** 背景行政区分レイヤー */
+      backend: L.featureGroup(),
+      /** 行政区分作成モードで表示する区分のポイントを表示するレイヤー */
+      points: L.featureGroup(),
+      /** 国名・地方自治体名を表示するレイヤー */
+      label: L.featureGroup()
+    }
     const fileList = [
       'prefecture/mabetic.json'
     ];
@@ -30,15 +37,15 @@ class Border {
       fillColor: '#888888',
       fillOpacity: 0.3,
     });
-    this.sectionLayer.addLayer(polygon);
+    this.sectionLayers.backend.addLayer(polygon);
   }
 
   drawBorders = () => {
-    this.map.addLayer(this.sectionLayer);
+    this.map.addLayer(this.sectionLayers.backend);
   }
 
   hide = () => {
-    this.map.removeLayer(this.sectionLayer);
+    this.map.removeLayer(this.sectionLayers.backend);
   }
 
   /** 地方行政区域作成モードがONになる */
