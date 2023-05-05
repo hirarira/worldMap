@@ -2,8 +2,13 @@
 
 /** 国境・地方行政区域表示レイヤー */
 class Border {
-  constructor(map) {
+  /**
+   * @param {L.map} map 
+   * @param {() => void} addPrefecturePoint
+   */
+  constructor(map, addPrefecturePoint) {
     this.map = map;
+    this.addPrefecturePoint = addPrefecturePoint;
     this.borderFiles = [];
     this.sectionLayers = {
       /** 背景行政区分レイヤー */
@@ -24,9 +29,29 @@ class Border {
       )
       /** ポリゴン情報を作成する */
       this.makePolygon();
+      /** Point情報を作成する */
+      this.makePoints();
+      this.map.addLayer(this.sectionLayers.backend);
     })();
   }
 
+  makePoints = () => {
+    // テスト的に1つ目のポリゴンのPointsだけ作成
+    this.borderFiles[0].forEach((point)=>{
+      this.sectionLayers.points.addLayer(
+        L.marker(point)
+          .on('click', (e) =>{
+            const latlng = [
+              e.latlng.lat,
+              e.latlng.lng
+            ]
+            this.addPrefecturePoint(latlng);
+          })
+      );
+    })
+  }
+
+  /** ポリゴン情報を作成する */
   makePolygon = () => {
     // とりあえずテスト的に1つ目のポリゴンだけ描画
     const polygon = L.polygon([
@@ -40,22 +65,14 @@ class Border {
     this.sectionLayers.backend.addLayer(polygon);
   }
 
-  drawBorders = () => {
-    this.map.addLayer(this.sectionLayers.backend);
-  }
-
-  hide = () => {
-    this.map.removeLayer(this.sectionLayers.backend);
-  }
-
   /** 地方行政区域作成モードがONになる */
   onMakePrefectureMode = () => {
-    this.drawBorders();
+    this.map.addLayer(this.sectionLayers.points);
   }
 
   /** 地方行政区域作成モードがOFFになる */
   offMakePrefectureMode = () => {
-    this.hide();
+    this.map.removeLayer(this.sectionLayers.points);
   }
 
   /** 行政区分のポリゴンファイルを一括で読み込む */
