@@ -36,33 +36,43 @@ class Border {
   }
 
   makePoints = () => {
-    // テスト的に1つ目のポリゴンのPointsだけ作成
-    this.borderFiles[0].forEach((point)=>{
-      this.sectionLayers.points.addLayer(
-        L.marker(point)
-          .on('click', (e) =>{
-            const latlng = [
-              e.latlng.lat,
-              e.latlng.lng
-            ]
-            this.addPrefecturePoint(latlng);
-          })
-      );
+    // 各ファイルに対してforEach
+    this.borderFiles.forEach((file) => {
+      // 各ファイルの行政区分
+      file.forEach((prefecture) => {
+        prefecture.polygon.forEach((point) => {
+          this.sectionLayers.points.addLayer(
+            L.marker(point)
+              .on('click', (e) =>{
+                const latlng = [
+                  e.latlng.lat,
+                  e.latlng.lng
+                ]
+                this.addPrefecturePoint(latlng);
+              })
+          );
+        })
+      })
     })
   }
 
   /** ポリゴン情報を作成する */
   makePolygon = () => {
-    // とりあえずテスト的に1つ目のポリゴンだけ描画
-    const polygon = L.polygon([
-      this.borderFiles[0]
-    ],
-    {
-      color: '#bbbbbb',
-      fillColor: '#888888',
-      fillOpacity: 0.3,
-    });
-    this.sectionLayers.backend.addLayer(polygon);
+    // 各ファイルに対してforEach
+    this.borderFiles.forEach((file) => {
+      // 各ファイルの行政区分
+      file.forEach((prefecture) => {
+        const polygon = L.polygon([
+          prefecture.polygon
+        ],
+        {
+          color: prefecture.color,
+          fillColor: prefecture.fillColor,
+          fillOpacity: 0.3,
+        });
+        this.sectionLayers.backend.addLayer(polygon);
+      })
+    })
   }
 
   /** 地方行政区域作成モードがONになる */
