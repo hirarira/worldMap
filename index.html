@@ -9,9 +9,11 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="./js/border.js"></script>
     <script src="./js/layer.js"></script>
     <script src="./js/station.js"></script>
     <script src="./js/world.js"></script>
+    <script src="./js/distanceExample.js"></script>
     <script src="./js/index.js"></script>
   </head>
   <body>
@@ -56,6 +58,9 @@
               </button>
               <button class="btn btn-outline-dark" onClick="pushButton.changeEmphasisLineMode()">
                 鉄道路線強調モード
+              </button>
+              <button class="btn btn-outline-dark" onClick="pushButton.changeMakePrefectureMode()">
+                行政区分作成モード
               </button>
             </div>
             <hr/>
@@ -187,6 +192,18 @@
               </div>
             </div>
             <!-- 路線構築モードここまで -->
+            <!-- 行政区分作成モード -->
+            <div class="makePrefectureMode">
+              <form>
+                <label class="col-form-label">出力されたJSON</label>
+                <div>
+                  <input type="text" class="form-control" id="outputPrefectureJSON">
+                </div>
+              </form>
+              <p><button class="btn-success" onclick="pushButton.prevPoints()">1つ戻す（表示は消えません）</button></p>
+              <p><button class="btn-success" onclick="pushButton.resetDistance()">作成の行政区分をリセットする</button></p>
+            </div>
+            <!-- 行政区分作成モードここまで -->
           </div>
           <!-- 右側マップ -->
           <div id="map" class="col-10"></div>

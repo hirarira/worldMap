@@ -16,11 +16,25 @@ const formatLines = (line) => {
   });
 }
 
+/** マップ表示Class */
 class LeafletMap {
-  // 1kmに相当するマップ上の距離1
+  /**
+   * @type {number} 1kmに相当するマップ上の距離1
+   */
   static ONE_KM_TO_MAPDISTANCE = 0.128;
+  /**
+   * @param {string} mode 
+   */
   constructor(mode) {
+    /**
+     * マップ表示モード
+     * @type {string}
+     * normal | distanceMode | inputMode | emphasisLineMode | makePrefectureMode
+     */
     this.mode = mode;
+    /**
+     * @type {L.map}
+     */
     this.map = L.map('map', {
       minZoom: 1,
       maxZoom: 10,
@@ -41,45 +55,54 @@ class LeafletMap {
       ...defaultOption,
       isShow: false
     }
-    const trainDetail = {
-      ...defaultOption,
-      pathType: 'zoom',
-      minNativeZoom: 2,
-      maxNativeZoom: 6,
-    }
     const dummy = {
       ...defaultOption,
       pathType: 'dummy',
       minNativeZoom: 1,
       maxNativeZoom: 10
     }
-    // 各レイヤー
+
+    /** 
+     * 画像レイヤー
+     * ラインやポリゴンによって構成されるレイヤーは別の管轄となる
+     */
     this.layers = {
+      /** 背景*/
       base: new Layer('base', defaultOption),
+      /** 鉄道路線（画像） */ 
       train: new Layer('train', defaultOption),
+      /** 標高 */
       elevation: new Layer('elevation', defaultHide),
-      placeName: new Layer('placeName', defaultOption),
-      trainDetail: new Layer('trainDetail', trainDetail),
+      /** 地点名・国境（画像）*/
+      placeName: new Layer('placeName', defaultOption),    
+      /** 距離凡例レイヤー */
+      distanceExample: new DistanceExample(this.map),
+      /** 国境・行政区分区境レイヤー */
+      border: new Border(this.map, this.addPrefecturePoint)
       // dummy: new Layer('dummy', dummy),
     }
-    // 表示可能範囲
+    
+    /** 駅・路線情報レイヤー */
+    this.station = new Station(this.map);
+
+    /** 表示可能範囲 */
     this.map.setMaxBounds(new L.LatLngBounds([0,0], [-320,512]));
-    const options = {
-      position: 'bottomleft',
-      numDigits: 7
-    }
-    // 現在表示中の座標情報を表示する
+    /** 現在表示中の座標情報を表示する */
     this.show = {
       train: true,
       elevation: false,
       placeName: true,
       trainDetail: false,
-      stationMarker: true
+      stationMarker: true,
+      border: true
     }
     this.lines = [];
-    // 新しくクリックして作られた駅一覧
+    /**
+     * 新しくクリックして作られた駅一覧
+     * @type {station[]}
+     */
     this.clickPositonList = [];
-    this.station = new Station(this.map);
+
     // 新しくクリックされたポイント一覧
     this.clickDistanceList = {
       totalDistance: 0,
@@ -87,8 +110,6 @@ class LeafletMap {
       layer: L.featureGroup()
     };
     this.map.addLayer(this.clickDistanceList.layer);
-    // 距離凡例の描画
-    this.showDistanceExample();
     // クリックした地点情報を表示する
     this.map.on('click', this.onClickMap);
     this.map.on('zoomend',  this.onZoomMap)
@@ -96,91 +117,102 @@ class LeafletMap {
     this.redrawLayerys();
   }
 
-  // 距離凡例を表示する
-  showDistanceExample = () => {
-    const tenKm = LeafletMap.ONE_KM_TO_MAPDISTANCE * 10;
-    const initX = 54;
-    L.polygon([
-        [-260, initX],
-        [-260, initX+(tenKm*12)],
-        [-268, initX+(tenKm*12)],
-        [-268, initX],
-      ],
-      {
-        color: '#bbbbbb',
-        fillColor: '#888888',
-        fillOpacity: 0.3,
-      }
-    ).addTo(this.map);
-    [...Array(11)].forEach((x, a)=>{
-      const addX = (a+1)*tenKm;
-      L.marker(
-        [-266, initX+addX],
-        {icon: L.divIcon(
-          {
-            html: `${a*10} km`,
-            className: 'divExp',
-            iconSize: [50, 20],
-            iconAnchor: [10, -10]
-          }
-        )}
-      )
-      .addTo(this.map);
-    })
-    const lineOption = {
-      weight: 5,
-      color: "#000000"
-    }
-    const latlngs = [...Array(11)].map((x,a)=>{
-      return [[-262, initX+((a+1)*tenKm)], [-266, initX+((a+1)*tenKm)]];
-    });
-    latlngs.push(
-      [
-        [-264, (initX+(1*tenKm))],
-        [-264, (initX+(11*tenKm))]
-      ]
-    )
-    L.polyline(latlngs, lineOption)
-    .addTo(this.map);
-  }
-
   // マップ中をクリックした際に呼ばれるイベント
   onClickMap = (e) => {
     if(['normalMode', 'emphasisLineMode'].includes(this.mode)) {
       return;
     }
-    if(this.mode === 'inputMode') {
-      this.setNewStation(e)
-    }
-    // 最後にクリックしたポイントを取り出す
+    /**
+     * 最後にクリックしたポイントを取り出す
+     * @type {[number, number]}
+     */
     const beforePoint = this.clickDistanceList.points.slice(-1)[0];
+    /**
+     * @type {[number, number]}
+     */
     const latlng = [e.latlng.lat, e.latlng.lng];
-    this.clickDistanceList.points.push(latlng)
-    if(this.mode !== 'inputMode') {
-      this.clickDistanceList.layer.addLayer(
-        L.marker(latlng)
-      )
+    switch(this.mode) {
+      // 距離測定モードの場合
+      case 'distanceMode':
+      // 鉄道路線追加モードの場合
+      case 'inputMode':
+        this.clickDistanceList.points.push(latlng)
+        this.setNewStation(e);
+        break;
+      // 行政区分作成モードの場合
+      case 'makePrefectureMode':
+        this.addPrefecturePoint([
+          e.latlng.lat,
+          e.latlng.lng
+        ])
+        break;
+      // それ以外のモードの場合
+      default:
+        break;
     }
     // 2回目以降のクリックならラインを引く
     if(beforePoint) {
-      const lineOption = {
-        weight: 5,
-        color: '#333333'
+      switch(this.mode) {
+        /** 距離測定モードの場合 */
+        case 'distanceMode':
+          this.drawMakeingLine(beforePoint, latlng);
+          // 距離を求める
+          const sectionDistance = calcDistance(beforePoint, latlng);
+          this.clickDistanceList.totalDistance += sectionDistance;
+          const showDistance = Math.round(this.clickDistanceList.totalDistance*1000)/1000;
+          $('#totalDistance').text(showDistance);
+          $('#sectionDistance').text(sectionDistance);
+          break;
+        /** 行政区分作成モードの場合 */
+        case 'makePrefectureMode':
+          break;
+        default:        
+          this.drawMakeingLine(beforePoint, latlng);
+          break;
       }
-      const linePos = [
-        beforePoint,
-        latlng
-      ]
-      this.clickDistanceList.layer.addLayer(
-        L.polyline(linePos, lineOption)
-      );
-      // 距離を求める
-      const sectionDistance = calcDistance(beforePoint, latlng);
-      this.clickDistanceList.totalDistance += sectionDistance;
-      const showDistance = Math.round(this.clickDistanceList.totalDistance*1000)/1000;
-      $('#totalDistance').text(showDistance);
-      $('#sectionDistance').text(sectionDistance);
     }
+  }
+
+  /**
+   * テスト用のラインを描画する
+   * @param {[number, number]} beforePoint 
+   * @param {[number, number]} currentPoint 
+   */
+  drawMakeingLine = (beforePoint, currentPoint) => {
+    const lineOption = {
+      weight: 5,
+      color: '#333333'
+    }
+    const linePos = [
+      beforePoint,
+      currentPoint
+    ]
+    this.clickDistanceList.layer.addLayer(
+      L.polyline(linePos, lineOption)
+    );
+  }
+
+  /**
+   * 行政区分作成モードで、引数の座標をポイントに追加する
+   * @param {[number, number]} latlng 緯度経度
+   */
+  addPrefecturePoint = (latlng) => {
+    /**
+     * 最後にクリックしたポイントを取り出す
+     * @type {[number, number]}
+     */
+    const beforePoint = this.clickPositonList.slice(-1)[0];
+    if(beforePoint) {
+      // Lineを描画する
+      this.drawMakeingLine(beforePoint, latlng)
+    }
+    // PointListに追加する
+    this.clickPositonList.push(latlng);
+    this.clickDistanceList.layer.addLayer(
+      L.marker(latlng)
+    )
+    // クリック中の座標情報をJSON文字列として保存する
+    $('#outputPrefectureJSON').val(JSON.stringify(this.clickPositonList));
   }
 
   // マップ上の距離測定イベントをリセットする
@@ -193,6 +225,16 @@ class LeafletMap {
       layer: L.featureGroup()
     };
     this.map.addLayer(this.clickDistanceList.layer);
+    /**
+     * 路線作成モードの情報もリセットする
+     */
+    this.clickPositonList = [];
+  }
+
+  // 作成中の行政区分を一つ戻す
+  prevPoints = () => {
+    this.clickPositonList.pop();
+    $('#outputPrefectureJSON').val(JSON.stringify(this.clickPositonList));
   }
 
   // マップ上に新しい駅をプロットする（inputModeのみ）
@@ -201,6 +243,7 @@ class LeafletMap {
     const stationName = $("#nextStationName").val();
     const stationList = stationName.split('\n');
     const firstStation = stationList[0];
+    /** @type {object} */
     const station = {
       label: firstStation,
       pos: {
@@ -234,7 +277,7 @@ class LeafletMap {
         this.layers[x].hyde();
       }
     });
-    const showOrderList = ['elevation', 'placeName', 'train' , 'trainDetail'];
+    const showOrderList = ['elevation', 'placeName', 'train'];
     showOrderList.forEach((x)=>{
       if(this.show[x]) {
         this.layers[x].show();
@@ -268,6 +311,17 @@ class LeafletMap {
   changeStationMarker = () => {
     this.station.swichShowMarker();
     this.station.drawStationMarker();
+  }
+  /** モードチェンジ */
+  changeMode = () => {
+    switch(this.mode) {
+      case 'makePrefectureMode':
+        this.layers.border.onMakePrefectureMode();
+        break;
+      default:
+        this.layers.border.offMakePrefectureMode();
+        break;
+    }
   }
 }
 

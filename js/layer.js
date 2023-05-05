@@ -1,4 +1,6 @@
 "use strict";
+
+/** Leaflet.jsの画像レイヤー機能 */
 class Layer {
   constructor(label, option) {
     this.map = option.map;
