@@ -75,6 +75,8 @@ window.onload = () => {
     changeStationMarker: map.changeStationMarker,
     // 距離をリセットする
     resetDistance: map.resetDistanceMarker,
+    // 鉄道路線を一つ戻す
+    prevPoints: map.prevPoints,
     // 鉄道路線を非表示にする
     hideLines: map.station.hideLines,
     // 鉄道路線を表示する

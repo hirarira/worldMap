@@ -187,7 +187,6 @@ class LeafletMap {
       beforePoint,
       currentPoint
     ]
-    console.log(linePos);
     this.clickDistanceList.layer.addLayer(
       L.polyline(linePos, lineOption)
     );
@@ -230,6 +229,12 @@ class LeafletMap {
      * 路線作成モードの情報もリセットする
      */
     this.clickPositonList = [];
+  }
+
+  // 作成中の行政区分を一つ戻す
+  prevPoints = () => {
+    this.clickPositonList.pop();
+    $('#outputPrefectureJSON').val(JSON.stringify(this.clickPositonList));
   }
 
   // マップ上に新しい駅をプロットする（inputModeのみ）
