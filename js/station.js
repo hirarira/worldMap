@@ -174,7 +174,7 @@ class Station {
     if(params.label !== '') {
       const divIcon = L.divIcon({
         html: params.label,
-        className: 'divicon',
+        className: 'stationIcon',
         iconSize: [100, 20],
         iconAnchor: [75, -10]
       })

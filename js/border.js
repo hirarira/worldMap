@@ -19,7 +19,9 @@ class Border {
       label: L.featureGroup()
     }
     const fileList = [
-      'prefecture/mabetic.json'
+      'prefecture/mabetic.json',
+      'city/letn.json',
+      'city/nazadali.json'
     ];
     (async () => {
       this.borderFiles = await Promise.all(
@@ -29,12 +31,49 @@ class Border {
       )
       /** ポリゴン情報を作成する */
       this.makePolygon();
+      /** 名称ラベルを追加する */
+      this.makeNameLabels();
       /** Point情報を作成する */
       this.makePoints();
+      /** 市区町村境界を表示する */
       this.map.addLayer(this.sectionLayers.backend);
     })();
   }
 
+  fixNamleLabelFontSize = (zoom) => {
+    if (zoom < 3) {
+      return "12px";
+    } else if (zoom < 4) {
+      return "14px";
+    } else {
+      return "16px";
+    }
+  }
+
+  makeNameLabels = () => {
+    // 各ファイルに対してforEach
+    this.borderFiles.forEach((file) => {
+      // 各ファイルの行政区分
+      file.forEach((prefecture) => {
+        if(prefecture.name && prefecture.nameLatlng) {
+          const divIcon = L.divIcon({
+            html: prefecture.name,
+            className: 'placeNameIcon',
+            iconSize: [200, 35],
+            iconAnchor: [75, -10]
+          })
+          const marker = L.marker(prefecture.nameLatlng,{
+            icon: divIcon,
+            interactive: false,
+            keyboard: false,
+          })
+          this.sectionLayers.label.addLayer(marker);
+        }
+      })
+    })
+  }
+
+  /** 作成用のPoint情報を作成する */
   makePoints = () => {
     // 各ファイルに対してforEach
     this.borderFiles.forEach((file) => {
@@ -62,17 +101,44 @@ class Border {
     this.borderFiles.forEach((file) => {
       // 各ファイルの行政区分
       file.forEach((prefecture) => {
+        const color = (()=>{
+          switch(prefecture.fillColor) {
+            case 1:
+              return '#ff8c00';
+            case 2:
+              return '#7fffd4';
+            case 3:
+              return '#00bfff';
+            case 4:
+              return '#b22222';
+            default:
+              return prefecture.fillColor;
+          }
+        })()
         const polygon = L.polygon([
           prefecture.polygon
         ],
         {
           color: prefecture.color,
-          fillColor: prefecture.fillColor,
+          fillColor: color,
           fillOpacity: 0.3,
         });
         this.sectionLayers.backend.addLayer(polygon);
       })
     })
+  }
+
+  /**
+   * 市区町村ラベルを表示するか
+   * @param {boolean} isShow 
+   */
+  isShowPrefectureLabel = (isShow) => {
+    if(isShow) {
+      this.map.addLayer(this.sectionLayers.label);
+    }
+    else {
+      this.map.removeLayer(this.sectionLayers.label);
+    }
   }
 
   /** 地方行政区域作成モードがONになる */

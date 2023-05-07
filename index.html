@@ -4,11 +4,17 @@
     <meta charset="utf-8">
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="./style.css">
+
+    <!-- Leaflet.js -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+
     <script src="./js/border.js"></script>
     <script src="./js/layer.js"></script>
     <script src="./js/station.js"></script>
@@ -39,10 +45,20 @@
               <button class="btn btn-success" onclick="pushButton.changeRailway()">鉄道路線表示切り替え</button>
               <button class="btn btn-success" onclick="pushButton.changeElevation()">標高表示切り替え</button>
               <button class="btn btn-success" onclick="pushButton.changePlaceName()">地名表示切り替え</button>
-              <button class="btn btn-success" onclick="pushButton.changeDetailRailway()">旧・鉄道詳細路線表示切り替え<br>（ナーザダリ近郊のみ）</button>
-              <button class="btn btn-success" onclick="pushButton.changeStationMarker()">駅マーカー切り替え</button>
-              <button class="btn btn-success" onclick="pushButton.hideLines()">鉄道路線を非表示にする</button>
-              <button class="btn btn-success" onclick="pushButton.showLines()">鉄道路線を表示する</button>
+              <input type="checkbox" class="btn-check" id="change-station-markers" checked autocomplete="off">
+              <label
+                class="btn btn-outline-primary"
+                for="change-station-markers"
+                onclick="pushButton.changeStationMarker()">
+                  駅マーカー切り替え
+              </label>
+              <input type="checkbox" class="btn-check" id="change-show-train-lines" checked autocomplete="off">
+              <label
+                class="btn btn-outline-primary"
+                for="change-show-train-lines"
+                onclick="pushButton.changeShowTrainLines()">
+                  鉄道路線を表示する
+              </label>
             </div>
             <hr/>
             <!-- モード切替 -->
