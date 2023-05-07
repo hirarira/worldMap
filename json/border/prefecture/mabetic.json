@@ -1,6 +1,7 @@
 [
   {
     "name": "ドレッジ県",
+    "nameLatlng": [-270.7026302355073,84.921875],
     "countryID": "",
     "category": "prefecture",
     "color": "#bbbbbb",
@@ -18,6 +19,7 @@
   },
   {
     "name": "ムスタラ県",
+    "nameLatlng": [-287.48315279798294,82.09375],
     "countryID": "1",
     "category": "prefecture",
     "color": "#bbbbbb",
@@ -26,6 +28,7 @@
   },
   {
     "name": "エニカル県",
+    "nameLatlng": [-289.5457330300628,103.34375],
     "countryID": "1",
     "category": "prefecture",
     "color": "#bbbbbb",
@@ -34,6 +37,7 @@
   },
   {
     "name": "ベンメス県",
+    "nameLatlng": [-259.28391370505256,87.21875],
     "countryID": "1",
     "category": "prefecture",
     "color": "#bbbbbb",
@@ -42,6 +46,7 @@
   },
   {
     "name": "マシュリ県",
+    "nameLatlng": [-253.878589048374,90.71875],
     "countryID": "1",
     "category": "prefecture",
     "color": "#bbbbbb",
@@ -50,6 +55,7 @@
   },
   {
     "name": "サワド県",
+    "nameLatlng": [-260.1587639385034,96.59375],
     "countryID": "1",
     "category": "prefecture",
     "color": "#bbbbbb",
@@ -58,6 +64,7 @@
   },
   {
     "name": "ドノリ県",
+    "nameLatlng": [-256.6906076558946,102.9375],
     "countryID": "1",
     "category": "prefecture",
     "color": "#bbbbbb",
@@ -66,6 +73,7 @@
   },
   {
     "name": "ニコラル県",
+    "nameLatlng": [-266.3452048750488,96.125],
     "countryID": "1",
     "category": "prefecture",
     "color": "#bbbbbb",
@@ -74,6 +82,7 @@
   },
   {
     "name": "キャフス県",
+    "nameLatlng": [-277.6241789583824,99.875],
     "countryID": "1",
     "category": "prefecture",
     "color": "#bbbbbb",
@@ -82,6 +91,7 @@
   },
   {
     "name": "オガル県",
+    "nameLatlng": [-273.01472105189987,107.796875],
     "countryID": "1",
     "category": "prefecture",
     "color": "#bbbbbb",
@@ -90,6 +100,7 @@
   },
   {
     "name": "ナッタ県",
+    "nameLatlng": [-273.2334336102626,114.03125],
     "countryID": "1",
     "category": "prefecture",
     "color": "#bbbbbb",
@@ -98,6 +109,7 @@
   },
   {
     "name": "マグヌルブ県",
+    "nameLatlng": [-285.9320656137884,116.5],
     "countryID": "1",
     "category": "prefecture",
     "color": "#bbbbbb",
@@ -106,6 +118,7 @@
   },
   {
     "name": "オスタ県",
+    "nameLatlng": [-267.3438596505092,118.640625],
     "countryID": "1",
     "category": "prefecture",
     "color": "#bbbbbb",
@@ -114,6 +127,7 @@
   },
   {
     "name": "ピャーテ県",
+    "nameLatlng": [-258.6401810491579,121.21875],
     "countryID": "1",
     "category": "prefecture",
     "color": "#bbbbbb",

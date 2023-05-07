@@ -120,7 +120,6 @@ class LeafletMap {
   // マップ中をクリックした際に呼ばれるイベント
   onClickMap = (e) => {
     this.map.eachLayer(((layer) => {
-      console.log(layer);
     }))
 
     if(['normalMode', 'emphasisLineMode'].includes(this.mode)) {
