@@ -52,12 +52,21 @@
                 onclick="pushButton.changeStationMarker()">
                   駅マーカー切り替え
               </label>
+              <!-- 鉄道路線を表示 -->
               <input type="checkbox" class="btn-check" id="change-show-train-lines" checked autocomplete="off">
               <label
                 class="btn btn-outline-primary"
                 for="change-show-train-lines"
                 onclick="pushButton.changeShowTrainLines()">
                   鉄道路線を表示する
+              </label>
+              <!-- 行政区分表示切替 -->
+              <input type="checkbox" class="btn-check" id="change-show-prefecture" checked autocomplete="off">
+              <label
+                class="btn btn-outline-primary"
+                for="change-show-prefecture"
+                onclick="pushButton.changeShowPrefectureLabel()">
+                  行政区分表示切替
               </label>
             </div>
             <hr/>

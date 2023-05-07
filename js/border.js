@@ -40,16 +40,7 @@ class Border {
     })();
   }
 
-  fixNamleLabelFontSize = (zoom) => {
-    if (zoom < 3) {
-      return "12px";
-    } else if (zoom < 4) {
-      return "14px";
-    } else {
-      return "16px";
-    }
-  }
-
+  /** 名称ラベルを作成する */
   makeNameLabels = () => {
     // 各ファイルに対してforEach
     this.borderFiles.forEach((file) => {

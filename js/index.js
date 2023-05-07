@@ -87,6 +87,11 @@ window.onload = () => {
         map.station.hideLines();
       }
     },
+    changeShowPrefectureLabel: () => {
+      const isShow = $("#change-show-prefecture").prop("checked");
+      console.log(isShow);
+      map.layers.border.isShowPrefectureLabel(isShow);
+    },
     // 鉄道路線を強調する
     emphasisLine: map.station.emphasisLine
   }
