@@ -269,7 +269,10 @@ class LeafletMap {
 
   //  マップの拡大率を変更したときに呼ばれるイベント
   onZoomMap = (e) => {
+    /** 拡大率に応じて駅マーカーを表示する */
     this.station.drawStationMarker();
+    /** 拡大率に応じて地方行政区分ラベルを表示する */
+    this.layers.border.drawPrefectureLabel();
   }
 
   // 描画をし直す

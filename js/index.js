@@ -88,8 +88,8 @@ window.onload = () => {
       }
     },
     changeShowPrefectureLabel: () => {
-      const isShow = $("#change-show-prefecture").prop("checked");
-      map.layers.border.isShowPrefectureLabel(isShow);
+      /** 拡大率を考慮して行政区分ラベルを表示する */
+      map.layers.border.drawPrefectureLabel(isShow);
     },
     // 鉄道路線を強調する
     emphasisLine: map.station.emphasisLine

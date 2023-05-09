@@ -16,7 +16,14 @@ class Border {
       /** 行政区分作成モードで表示する区分のポイントを表示するレイヤー */
       points: L.featureGroup(),
       /** 国名・地方自治体名を表示するレイヤー */
-      label: L.featureGroup()
+      label: {
+        /** 国単位 */
+        country: L.featureGroup(),
+        /** 都道府県レベル */
+        prefecture: L.featureGroup(),
+        /** 市区町村レベル */
+        city: L.featureGroup()
+      }
     }
     const fileList = [
       'prefecture/mabetic.json',
@@ -58,7 +65,21 @@ class Border {
             interactive: false,
             keyboard: false,
           })
-          this.sectionLayers.label.addLayer(marker);
+          /** 規模に応じて追加するレイヤーを変える */
+          switch(prefecture.category) {
+            /** 国レベル */
+            case 'country':
+              this.sectionLayers.label.country.addLayer(marker);
+              break;
+            /** 都道府県レベル */
+            case 'prefecture':
+              this.sectionLayers.label.prefecture.addLayer(marker);
+              break;
+            /** 市区町村レベル */
+            default:
+              this.sectionLayers.label.city.addLayer(marker);
+              break;
+          }
         }
       })
     })
@@ -120,15 +141,40 @@ class Border {
   }
 
   /**
-   * 市区町村ラベルを表示するか
+   * 拡大率を考慮して行政区分ラベルを表示する
    * @param {boolean} isShow 
    */
-  isShowPrefectureLabel = (isShow) => {
+  drawPrefectureLabel = () => {
+    const isShow = $("#change-show-prefecture").prop("checked");
     if(isShow) {
-      this.map.addLayer(this.sectionLayers.label);
+      // 拡大率を取得する
+      const zoom  = this.map.getZoom();
+      /** 国ラベルは拡大率2以上で表示する */
+      if(zoom > 1) {
+        this.map.addLayer(this.sectionLayers.label.country);
+      }
+      else {
+        this.map.removeLayer(this.sectionLayers.label.country);
+      }
+      /** 都道府県ラベルは拡大率4以上で表示する */
+      if(zoom > 3) {
+        this.map.addLayer(this.sectionLayers.label.prefecture);
+      }
+      else {
+        this.map.removeLayer(this.sectionLayers.label.prefecture);
+      }
+      /** 市区町村ラベルは拡大率6以上で表示する */
+      if(zoom > 5) {
+        this.map.addLayer(this.sectionLayers.label.city);
+      }
+      else {
+        this.map.removeLayer(this.sectionLayers.label.city);
+      }
     }
     else {
-      this.map.removeLayer(this.sectionLayers.label);
+      this.map.removeLayer(this.sectionLayers.label.country);
+      this.map.removeLayer(this.sectionLayers.label.prefecture);
+      this.map.removeLayer(this.sectionLayers.label.city);
     }
   }
 
