@@ -116,13 +116,29 @@ class Border {
         const color = (()=>{
           switch(prefecture.fillColor) {
             case 1:
-              return '#ff8c00';
+              return '#ffbf7f';
             case 2:
-              return '#7fffd4';
+              return '#ffff7f';
             case 3:
-              return '#00bfff';
+              return '#bfff7f';
             case 4:
-              return '#b22222';
+              return '#7fff7f';
+            case 5:
+              return '#7fffbf';
+            case 6:
+              return '#7fffff';
+            case 7:
+              return '#7fbfff';
+            case 8:
+              return '#7f7fff';
+            case 9:
+              return '#bf7fff';
+            case 10:
+              return '#ff7fff';
+            case 11:
+              return '#ff7fbf';
+            case 12:
+              return '#ff7f7f';
             default:
               return prefecture.fillColor;
           }

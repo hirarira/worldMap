@@ -37,9 +37,9 @@ class LeafletMap {
      */
     this.map = L.map('map', {
       minZoom: 1,
-      maxZoom: 10,
+      maxZoom: 9,
       center: [-225, 166],
-      zoom: 4,
+      zoom: 2,
       crs: L.CRS.Simple
     });
     const defaultOption = {
