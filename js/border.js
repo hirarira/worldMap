@@ -27,6 +27,7 @@ class Border {
     }
     const fileList = [
       'prefecture/mabetic.json',
+      'prefecture/roulette.json',
       'city/letn.json',
       'city/nazadali.json'
     ];
@@ -53,7 +54,7 @@ class Border {
     this.borderFiles.forEach((file) => {
       // 各ファイルの行政区分
       file.forEach((prefecture) => {
-        if(prefecture.name && prefecture.nameLatlng) {
+        if(prefecture.name && prefecture.nameLatlng && prefecture.nameLatlng.length > 1) {
           const divIcon = L.divIcon({
             html: prefecture.name,
             className: 'placeNameIcon',
