@@ -37,9 +37,9 @@ class LeafletMap {
      */
     this.map = L.map('map', {
       minZoom: 1,
-      maxZoom: 10,
+      maxZoom: 9,
       center: [-225, 166],
-      zoom: 4,
+      zoom: 2,
       crs: L.CRS.Simple
     });
     const defaultOption = {
@@ -119,6 +119,9 @@ class LeafletMap {
 
   // マップ中をクリックした際に呼ばれるイベント
   onClickMap = (e) => {
+    this.map.eachLayer(((layer) => {
+    }))
+
     if(['normalMode', 'emphasisLineMode'].includes(this.mode)) {
       return;
     }
@@ -266,7 +269,10 @@ class LeafletMap {
 
   //  マップの拡大率を変更したときに呼ばれるイベント
   onZoomMap = (e) => {
+    /** 拡大率に応じて駅マーカーを表示する */
     this.station.drawStationMarker();
+    /** 拡大率に応じて地方行政区分ラベルを表示する */
+    this.layers.border.drawPrefectureLabel();
   }
 
   // 描画をし直す

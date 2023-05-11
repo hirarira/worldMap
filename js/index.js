@@ -77,10 +77,20 @@ window.onload = () => {
     resetDistance: map.resetDistanceMarker,
     // 鉄道路線を一つ戻す
     prevPoints: map.prevPoints,
-    // 鉄道路線を非表示にする
-    hideLines: map.station.hideLines,
-    // 鉄道路線を表示する
-    showLines: map.station.showLines,
+    // 鉄道路線の表示を切り替える
+    changeShowTrainLines: ()=>{
+      const isShow = $("#change-show-train-lines").prop("checked");
+      if(isShow) {
+        map.station.showLines();
+      }
+      else {
+        map.station.hideLines();
+      }
+    },
+    changeShowPrefectureLabel: () => {
+      /** 拡大率を考慮して行政区分ラベルを表示する */
+      map.layers.border.drawPrefectureLabel(isShow);
+    },
     // 鉄道路線を強調する
     emphasisLine: map.station.emphasisLine
   }
