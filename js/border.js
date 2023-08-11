@@ -25,11 +25,19 @@ class Border {
         city: L.featureGroup()
       }
     }
+    /** 行政区分作成モードでピンを立てる地点の一覧
+     * 全て立てると重くなるので、必要なものだけ立てる
+     */
+    this.showPrefectureModePointNameList = [
+      "エスタレスト州"
+    ]
     const fileList = [
       'prefecture/mabetic.json',
       'prefecture/roulette.json',
+      'prefecture/elable.json',
       'city/letn.json',
-      'city/nazadali.json'
+      'city/nazadali.json',
+      'country/country.json'
     ];
     (async () => {
       this.borderFiles = await Promise.all(
@@ -92,6 +100,10 @@ class Border {
     this.borderFiles.forEach((file) => {
       // 各ファイルの行政区分
       file.forEach((prefecture) => {
+        console.log(prefecture);
+        if(!this.showPrefectureModePointNameList.includes(prefecture.name)) {
+          return;
+        }
         prefecture.polygon.forEach((point) => {
           this.sectionLayers.points.addLayer(
             L.marker(point)
