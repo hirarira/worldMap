@@ -29,7 +29,8 @@ class Border {
      * 全て立てると重くなるので、必要なものだけ立てる
      */
     this.showPrefectureModePointNameList = [
-      "エスタレスト州"
+      "エラブル州",
+      "レシロヲ区"
     ]
     const fileList = [
       'prefecture/mabetic.json',
@@ -37,6 +38,7 @@ class Border {
       'prefecture/elable.json',
       'city/letn.json',
       'city/nazadali.json',
+      'city/elable.json',
       'country/country.json'
     ];
     (async () => {
