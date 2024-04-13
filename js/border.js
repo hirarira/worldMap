@@ -157,16 +157,36 @@ class Border {
             default:
               return prefecture.fillColor;
           }
-        })()
-        const polygon = L.polygon([
-          prefecture.polygon
-        ],
-        {
-          color: prefecture.color,
-          fillColor: color,
-          fillOpacity: 0.3,
-        });
-        this.sectionLayers.backend.addLayer(polygon);
+        })();
+        /** ライン描画モードの場合 */
+        if(prefecture.type === 'line') {
+          if(Array.isArray(prefecture.lines)) {
+            const polyline = L.polyline([prefecture.lines], {
+              color: prefecture.color
+            })
+            this.sectionLayers.backend.addLayer(polyline);
+          }
+          else {
+            console.error(`line 要素がありません。: ${prefecture.line}`)
+          }
+        }
+        /** ポリゴン描画モードの場合 */
+        else {
+          if(Array.isArray(prefecture.polygon)) {
+            const polygon = L.polygon([
+              prefecture.polygon
+            ],
+            {
+              color: prefecture.color,
+              fillColor: color,
+              fillOpacity: 0.3,
+            });
+            this.sectionLayers.backend.addLayer(polygon);
+          }
+          else {
+            console.error(`polygon要素がありません。: ${prefecture.name}`)
+          }
+        }
       })
     })
   }
