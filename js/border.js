@@ -25,12 +25,12 @@ class Border {
         city: L.featureGroup()
       }
     }
-    /** 行政区分作成モードでピンを立てる地点の一覧
+    /**
+     * 行政区分作成モードでピンを立てる地点の一覧
      * 全て立てると重くなるので、必要なものだけ立てる
      */
     this.showPrefectureModePointNameList = [
-      "エラブル州",
-      "レシロヲ区"
+      "オットル区"
     ]
     const fileList = [
       'prefecture/mabetic.json',
@@ -161,8 +161,10 @@ class Border {
         /** ライン描画モードの場合 */
         if(prefecture.type === 'line') {
           if(Array.isArray(prefecture.lines)) {
+            const weight = prefecture.weight || 3;
             const polyline = L.polyline([prefecture.lines], {
-              color: prefecture.color
+              color: prefecture.color,
+              weight: weight
             })
             this.sectionLayers.backend.addLayer(polyline);
           }
@@ -174,7 +176,7 @@ class Border {
         else {
           if(Array.isArray(prefecture.polygon)) {
             const polygon = L.polygon([
-              prefecture.polygon
+              prefecture.polygon,
             ],
             {
               color: prefecture.color,
