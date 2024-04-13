@@ -25,11 +25,21 @@ class Border {
         city: L.featureGroup()
       }
     }
+    /**
+     * 行政区分作成モードでピンを立てる地点の一覧
+     * 全て立てると重くなるので、必要なものだけ立てる
+     */
+    this.showPrefectureModePointNameList = [
+      "オットル区"
+    ]
     const fileList = [
       'prefecture/mabetic.json',
       'prefecture/roulette.json',
+      'prefecture/elable.json',
       'city/letn.json',
-      'city/nazadali.json'
+      'city/nazadali.json',
+      'city/elable.json',
+      'country/country.json'
     ];
     (async () => {
       this.borderFiles = await Promise.all(
@@ -92,6 +102,10 @@ class Border {
     this.borderFiles.forEach((file) => {
       // 各ファイルの行政区分
       file.forEach((prefecture) => {
+        console.log(prefecture);
+        if(!this.showPrefectureModePointNameList.includes(prefecture.name)) {
+          return;
+        }
         prefecture.polygon.forEach((point) => {
           this.sectionLayers.points.addLayer(
             L.marker(point)
@@ -143,16 +157,38 @@ class Border {
             default:
               return prefecture.fillColor;
           }
-        })()
-        const polygon = L.polygon([
-          prefecture.polygon
-        ],
-        {
-          color: prefecture.color,
-          fillColor: color,
-          fillOpacity: 0.3,
-        });
-        this.sectionLayers.backend.addLayer(polygon);
+        })();
+        /** ライン描画モードの場合 */
+        if(prefecture.type === 'line') {
+          if(Array.isArray(prefecture.lines)) {
+            const weight = prefecture.weight || 3;
+            const polyline = L.polyline([prefecture.lines], {
+              color: prefecture.color,
+              weight: weight
+            })
+            this.sectionLayers.backend.addLayer(polyline);
+          }
+          else {
+            console.error(`line 要素がありません。: ${prefecture.line}`)
+          }
+        }
+        /** ポリゴン描画モードの場合 */
+        else {
+          if(Array.isArray(prefecture.polygon)) {
+            const polygon = L.polygon([
+              prefecture.polygon,
+            ],
+            {
+              color: prefecture.color,
+              fillColor: color,
+              fillOpacity: 0.3,
+            });
+            this.sectionLayers.backend.addLayer(polygon);
+          }
+          else {
+            console.error(`polygon要素がありません。: ${prefecture.name}`)
+          }
+        }
       })
     })
   }

@@ -88,6 +88,7 @@ window.onload = () => {
       }
     },
     changeShowPrefectureLabel: () => {
+      const isShow = $("#change-show-prefecture").prop("checked");
       /** 拡大率を考慮して行政区分ラベルを表示する */
       map.layers.border.drawPrefectureLabel(isShow);
     },

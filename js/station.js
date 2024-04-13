@@ -189,7 +189,8 @@ class Station {
   setTrainLine = (latlng, lineColor) => {
     const lineOption = {
       weight: 5,
-      color: lineColor
+      color: lineColor,
+      dashArray: '10 20'
     }
     const polyline = L.polyline(latlng, lineOption)
     this.sectionLayer.addLayer(polyline);

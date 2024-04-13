@@ -200,6 +200,8 @@ class LeafletMap {
    * @param {[number, number]} latlng 緯度経度
    */
   addPrefecturePoint = (latlng) => {
+    // TODO: 後で util に持っていく
+    const fixLatlng = [roundNumber(latlng[0]), roundNumber(latlng[1])];
     /**
      * 最後にクリックしたポイントを取り出す
      * @type {[number, number]}
@@ -207,12 +209,12 @@ class LeafletMap {
     const beforePoint = this.clickPositonList.slice(-1)[0];
     if(beforePoint) {
       // Lineを描画する
-      this.drawMakeingLine(beforePoint, latlng)
+      this.drawMakeingLine(beforePoint, fixLatlng)
     }
     // PointListに追加する
-    this.clickPositonList.push(latlng);
+    this.clickPositonList.push(fixLatlng);
     this.clickDistanceList.layer.addLayer(
-      L.marker(latlng)
+      L.marker(fixLatlng)
     )
     // クリック中の座標情報をJSON文字列として保存する
     $('#outputPrefectureJSON').val(JSON.stringify(this.clickPositonList));
@@ -242,6 +244,8 @@ class LeafletMap {
 
   // マップ上に新しい駅をプロットする（inputModeのみ）
   setNewStation = (e) =>{
+    // TODO: 後で util に持っていく
+    const roundNumber = (num) => { return (Math.round(num * 10000)) / 10000; }
     const latlng = e.latlng;
     const stationName = $("#nextStationName").val();
     const stationList = stationName.split('\n');
@@ -250,8 +254,8 @@ class LeafletMap {
     const station = {
       label: firstStation,
       pos: {
-        x: latlng.lat,
-        y: latlng.lng
+        x: roundNumber(latlng.lat),
+        y: roundNumber(latlng.lng)
       },
       type: 'main'
     };
