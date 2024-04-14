@@ -62,7 +62,11 @@ class Station {
         lineName: '',
         stationName: '',
         beforeStation: {},
-        afterStation: {}
+        afterStation: {},
+        pos: {
+          x: 0,
+          y: 0
+        }
       },
       methods: {
         setData: (data) => {
@@ -70,6 +74,7 @@ class Station {
           this.popup.stationName = data.stationName;
           this.popup.beforeStation = data.beforeStation;
           this.popup.afterStation = data.afterStation;
+          this.popup.pos = data.pos;
         }
       }
     })
@@ -222,7 +227,8 @@ class Station {
         const stationLabel = station.label !== ''? station.label: '(駅名未定)';
         const popupBodyObject = {
           lineName: line.lineName,
-          stationName:  stationLabel
+          stationName:  stationLabel,
+          pos: station.pos
         };
         if(index > 0) {
           const beforeStation = line.stations[index-1];
