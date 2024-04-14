@@ -140,12 +140,12 @@
 			"type": "local"
 		},
 		{
-			"label": "",
+			"label": "アルンタ",
 			"pos": {
 				"x": -223.341,
 				"y": 166.699
 			},
-			"type": "local"
+			"type": "middle"
 		},
 		{
 			"label": "",
