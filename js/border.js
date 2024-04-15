@@ -202,13 +202,8 @@ class Border {
     if(isShow) {
       // 拡大率を取得する
       const zoom  = this.map.getZoom();
-      /** 国ラベルは拡大率2以上で表示する */
-      if(zoom > 1) {
+      /** 国ラベルは拡大率常に表示する */
         this.map.addLayer(this.sectionLayers.label.country);
-      }
-      else {
-        this.map.removeLayer(this.sectionLayers.label.country);
-      }
       /** 都道府県ラベルは拡大率4以上で表示する */
       if(zoom > 3) {
         this.map.addLayer(this.sectionLayers.label.prefecture);

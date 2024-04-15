@@ -449,12 +449,12 @@
 			"type": "local"
 		},
 		{
-			"label": "",
+			"label": "新レンギュ",
 			"pos": {
 				"x": -237.7285,
 				"y": 165.1002
 			},
-			"type": "local"
+			"type": "middle"
 		},
 		{
 			"label": "",
@@ -537,12 +537,12 @@
 			"type": "local"
 		},
 		{
-			"label": "",
+			"label": "ソクミン",
 			"pos": {
 				"x": -241.5719,
 				"y": 163.8423
 			},
-			"type": "local"
+			"type": "middle"
 		},
 		{
 			"label": "",
