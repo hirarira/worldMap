@@ -17,31 +17,31 @@
 			"type": "main"
 		},
 		{
-			"label": "",
+			"label": "南ダラス",
 			"pos": {
 				"x": -225.1993,
 				"y": 166.5078
 			},
-			"type": "local"
+			"type": "cityLocal"
 		},
 		{
-			"label": "",
+			"label": "ルデ",
 			"pos": {
 				"x": -225.3263,
 				"y": 166.5098
 			},
-			"type": "local"
+			"type": "cityLocal"
 		},
 		{
-			"label": "",
+			"label": "ヴァレス",
 			"pos": {
 				"x": -225.4689,
 				"y": 166.4805
 			},
-			"type": "local"
+			"type": "cityLocal"
 		},
 		{
-			"label": "",
+			"label": "ヴィーナ",
 			"pos": {
 				"x": -225.594,
 				"y": 166.4434
@@ -49,28 +49,28 @@
 			"type": "local"
 		},
 		{
-			"label": "",
+			"label": "プレス",
 			"pos": {
 				"x": -225.7542,
 				"y": 166.3594
 			},
-			"type": "local"
+			"type": "cityLocal"
 		},
 		{
-			"label": "",
+			"label": "シャルダ",
 			"pos": {
 				"x": -225.8988,
 				"y": 166.3007
 			},
-			"type": "local"
+			"type": "cityLocal"
 		},
 		{
-			"label": "",
+			"label": "ヴァロネ",
 			"pos": {
 				"x": -226.02,
 				"y": 166.2499
 			},
-			"type": "local"
+			"type": "cityLocal"
 		},
 		{
 			"label": "パム",
@@ -81,79 +81,79 @@
 			"type": "middle"
 		},
 		{
-			"label": "",
+			"label": "南パム",
 			"pos": {
 				"x": -226.36,
 				"y": 166.1601
 			},
-			"type": "local"
+			"type": "cityLocal"
 		},
 		{
-			"label": "",
+			"label": "フィルダ",
 			"pos": {
 				"x": -226.5437,
 				"y": 166.1151
 			},
-			"type": "local"
+			"type": "cityLocal"
 		},
 		{
-			"label": "",
+			"label": "ウェルタ",
 			"pos": {
 				"x": -226.6746,
 				"y": 166.0937
 			},
-			"type": "local"
+			"type": "cityLocal"
 		},
 		{
-			"label": "",
+			"label": "ブラスタ",
 			"pos": {
 				"x": -226.9599,
 				"y": 166.0624
 			},
-			"type": "local"
+			"type": "cityLocal"
 		},
 		{
-			"label": "",
+			"label": "プロネ中央",
 			"pos": {
 				"x": -227.1023,
 				"y": 166.0695
 			},
-			"type": "local"
+			"type": "middle"
 		},
 		{
-			"label": "",
+			"label": "ヴィスト",
 			"pos": {
 				"x": -227.243,
 				"y": 166.0617
 			},
-			"type": "local"
+			"type": "cityLocal"
 		},
 		{
-			"label": "",
+			"label": "ロンデ",
 			"pos": {
 				"x": -227.458,
 				"y": 166.0381
 			},
-			"type": "local"
+			"type": "cityLocal"
 		},
 		{
-			"label": "",
+			"label": "グレタ",
 			"pos": {
 				"x": -227.6846,
 				"y": 166.0303
 			},
-			"type": "local"
+			"type": "cityLocal"
 		},
 		{
-			"label": "",
+			"label": "ヴェロス",
 			"pos": {
 				"x": -227.9191,
 				"y": 166.0225
 			},
-			"type": "local"
+			"type": "cityLocal"
 		},
 		{
-			"label": "",
+			"label": "ブリューネ",
 			"pos": {
 				"x": -228.0676,
 				"y": 166.0225
@@ -161,15 +161,15 @@
 			"type": "local"
 		},
 		{
-			"label": "",
+			"label": "ブレルス",
 			"pos": {
 				"x": -228.31,
 				"y": 166.0029
 			},
-			"type": "local"
+			"type": "cityLocal"
 		},
 		{
-			"label": "",
+			"label": "シルクス",
 			"pos": {
 				"x": -228.5106,
 				"y": 166.0033
@@ -177,31 +177,31 @@
 			"type": "local"
 		},
 		{
-			"label": "",
+			"label": "北グリノス",
 			"pos": {
 				"x": -228.88,
 				"y": 165.9877
 			},
-			"type": "local"
+			"type": "cityLocal"
 		},
 		{
-			"label": "",
+			"label": "ロストル",
 			"pos": {
 				"x": -229.0441,
 				"y": 165.974
 			},
-			"type": "local"
+			"type": "cityLocal"
 		},
 		{
-			"label": "",
+			"label": "ヴァラス",
 			"pos": {
 				"x": -229.2493,
 				"y": 165.9779
 			},
-			"type": "local"
+			"type": "cityLocal"
 		},
 		{
-			"label": "",
+			"label": "ウェスカ",
 			"pos": {
 				"x": -229.603,
 				"y": 166.0307
@@ -209,7 +209,7 @@
 			"type": "local"
 		},
 		{
-			"label": "",
+			"label": "フェリス",
 			"pos": {
 				"x": -229.8355,
 				"y": 166.0541
@@ -217,47 +217,47 @@
 			"type": "local"
 		},
 		{
-			"label": "",
+			"label": "ノルクル",
 			"pos": {
 				"x": -230.1013,
 				"y": 166.0717
 			},
-			"type": "local"
+			"type": "cityLocal"
 		},
 		{
-			"label": "",
+			"label": "ヴェルセ",
 			"pos": {
 				"x": -230.3729,
 				"y": 166.1264
 			},
-			"type": "local"
+			"type": "cityLocal"
 		},
 		{
-			"label": "",
+			"label": "プレスク",
 			"pos": {
 				"x": -230.5996,
 				"y": 166.1459
 			},
-			"type": "local"
+			"type": "cityLocal"
 		},
 		{
-			"label": "",
+			"label": "南プレスク",
 			"pos": {
 				"x": -230.8012,
 				"y": 166.175
 			},
-			"type": "local"
+			"type": "cityLocal"
 		},
 		{
-			"label": "",
+			"label": "シュリンス公園",
 			"pos": {
 				"x": -231.0045,
 				"y": 166.179
 			},
-			"type": "local"
+			"type": "cityLocal"
 		},
 		{
-			"label": "",
+			"label": "ブラガス",
 			"pos": {
 				"x": -231.2077,
 				"y": 166.1829
@@ -265,7 +265,7 @@
 			"type": "local"
 		},
 		{
-			"label": "",
+			"label": "プリノス",
 			"pos": {
 				"x": -231.4148,
 				"y": 166.2063
@@ -273,28 +273,28 @@
 			"type": "local"
 		},
 		{
-			"label": "",
+			"label": "ヴォルドス",
 			"pos": {
 				"x": -231.6102,
 				"y": 166.2063
 			},
-			"type": "local"
+			"type": "cityLocal"
 		},
 		{
-			"label": "",
+			"label": "ウィルネ",
 			"pos": {
 				"x": -231.7627,
 				"y": 166.2219
 			},
-			"type": "local"
+			"type": "cityLocal"
 		},
 		{
-			"label": "",
+			"label": "ロスカス",
 			"pos": {
 				"x": -231.9033,
 				"y": 166.2258
 			},
-			"type": "local"
+			"type": "cityLocal"
 		},
 		{
 			"label": "レーテ",
