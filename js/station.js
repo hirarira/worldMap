@@ -35,8 +35,8 @@ class Station {
       // ローカル駅
       local: {
         zoom: {
-          marker: 6,
-          label: 7
+          marker: 5,
+          label: 6
         },
         layer: {
           marker: L.featureGroup(),
@@ -46,8 +46,8 @@ class Station {
       // 大都市近郊小駅
       cityLocal: {
         zoom: {
-          marker: 7,
-          label: 8
+          marker: 6,
+          label: 7
         },
         layer: {
           marker: L.featureGroup(),

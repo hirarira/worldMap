@@ -12,76 +12,28 @@
 			"type": "middle"
 		},
 		{
-			"label": "",
-			"pos": {
-				"x": -267.609,
-				"y": 82.152
-			},
-			"type": "point"
-		},
-		{
-			"label": "",
-			"pos": {
-				"x": -267.588,
-				"y": 82.458
-			},
-			"type": "point"
-		},
-		{
-			"label": "",
+			"label": "北ヴォルガ",
 			"pos": {
 				"x": -267.586,
 				"y": 82.792
 			},
-			"type": "point"
+			"type": "local"
 		},
 		{
-			"label": "",
-			"pos": {
-				"x": -267.570,
-				"y": 83.181
-			},
-			"type": "point"
-		},
-		{
-			"label": "",
-			"pos": {
-				"x": -267.676,
-				"y": 83.683
-			},
-			"type": "point"
-		},
-		{
-			"label": "",
+			"label": "アルカン・ノア",
 			"pos": {
 				"x": -267.824,
 				"y": 84.132
 			},
-			"type": "point"
+			"type": "local"
 		},
 		{
-			"label": "",
-			"pos": {
-				"x": -267.945,
-				"y": 84.546
-			},
-			"type": "point"
-		},
-		{
-			"label": "",
+			"label": "新ゼフィラ",
 			"pos": {
 				"x": -268.043,
 				"y": 84.910
 			},
-			"type": "point"
-		},
-		{
-			"label": "",
-			"pos": {
-				"x": -268.137,
-				"y": 85.359
-			},
-			"type": "point"
+			"type": "local"
 		},
 		{
 			"label": "チクサ",
@@ -92,68 +44,44 @@
 			"type": "middle"
 		},
 		{
-			"label": "",
-			"pos": {
-				"x": -268.367,
-				"y": 86.386
-			},
-			"type": "point"
-		},
-		{
-			"label": "",
+			"label": "西テスタラ",
 			"pos": {
 				"x": -268.562,
 				"y": 86.929
 			},
-			"type": "point"
+			"type": "local"
 		},
 		{
-			"label": "",
+			"label": "ガボネの森",
 			"pos": {
 				"x": -268.953,
 				"y": 87.449
 			},
-			"type": "point"
+			"type": "local"
 		},
 		{
-			"label": "",
-			"pos": {
-				"x": -269.332,
-				"y": 87.847
-			},
-			"type": "point"
-		},
-		{
-			"label": "",
+			"label": "北ロデリア",
 			"pos": {
 				"x": -269.602,
 				"y": 88.285
 			},
-			"type": "point"
+			"type": "local"
 		},
 		{
-			"label": "",
-			"pos": {
-				"x": -269.907,
-				"y": 88.812
-			},
-			"type": "point"
-		},
-		{
-			"label": "",
+			"label": "シェムバール中央",
 			"pos": {
 				"x": -270.157,
 				"y": 89.375
 			},
-			"type": "point"
+			"type": "local"
 		},
 		{
-			"label": "",
+			"label": "丘の上のピュアノ",
 			"pos": {
 				"x": -270.375,
 				"y": 89.695
 			},
-			"type": "point"
+			"type": "local"
 		},
 		{
 			"label": "ギュスコ",
@@ -164,44 +92,36 @@
 			"type": "middle"
 		},
 		{
-			"label": "",
+			"label": "ギュスコ東公園",
 			"pos": {
 				"x": -271.250,
 				"y": 90.421
 			},
-			"type": "point"
+			"type": "local"
 		},
 		{
-			"label": "",
+			"label": "北ベルワ",
 			"pos": {
 				"x": -271.895,
 				"y": 90.804
 			},
-			"type": "point"
+			"type": "local"
 		},
 		{
-			"label": "",
+			"label": "ベルワ高原",
 			"pos": {
 				"x": -272.524,
 				"y": 91.089
 			},
-			"type": "point"
+			"type": "local"
 		},
 		{
-			"label": "",
-			"pos": {
-				"x": -273.153,
-				"y": 91.355
-			},
-			"type": "point"
-		},
-		{
-			"label": "",
+			"label": "ニゾガラ新町",
 			"pos": {
 				"x": -273.814,
 				"y": 91.597
 			},
-			"type": "point"
+			"type": "local"
 		},
 		{
 			"label": "ヒェチ",
@@ -212,52 +132,44 @@
 			"type": "middle"
 		},
 		{
-			"label": "",
+			"label": "ヒェチ大学前",
 			"pos": {
 				"x": -275.240,
 				"y": 91.402
 			},
-			"type": "point"
+			"type": "local"
 		},
 		{
-			"label": "",
+			"label": "アデラ",
 			"pos": {
 				"x": -275.701,
 				"y": 91.082
 			},
-			"type": "point"
+			"type": "local"
 		},
 		{
-			"label": "",
+			"label": "アデラニュータウン",
 			"pos": {
 				"x": -276.389,
 				"y": 90.796
 			},
-			"type": "point"
+			"type": "local"
 		},
 		{
-			"label": "",
-			"pos": {
-				"x": -276.990,
-				"y": 90.476
-			},
-			"type": "point"
-		},
-		{
-			"label": "",
+			"label": "新デンレン",
 			"pos": {
 				"x": -277.455,
 				"y": 90.234
 			},
-			"type": "point"
+			"type": "local"
 		},
 		{
-			"label": "",
+			"label": "ホイヌ",
 			"pos": {
 				"x": -277.893,
 				"y": 90.078
 			},
-			"type": "point"
+			"type": "local"
 		},
 		{
 			"label": "レディンバラ",
@@ -268,36 +180,28 @@
 			"type": "main"
 		},
 		{
-			"label": "",
+			"label": "南レディンバラ",
 			"pos": {
 				"x": -278.964,
 				"y": 89.753
 			},
-			"type": "point"
+			"type": "local"
 		},
 		{
-			"label": "",
-			"pos": {
-				"x": -279.515,
-				"y": 89.453
-			},
-			"type": "point"
-		},
-		{
-			"label": "",
+			"label": "サドルク中央",
 			"pos": {
 				"x": -280.042,
 				"y": 89.203
 			},
-			"type": "point"
+			"type": "local"
 		},
 		{
-			"label": "",
+			"label": "メカワ工業団地",
 			"pos": {
 				"x": -280.398,
 				"y": 89.039
 			},
-			"type": "point"
+			"type": "local"
 		},
 		{
 			"label": "ツヌルト",
@@ -308,28 +212,20 @@
 			"type": "middle"
 		},
 		{
-			"label": "",
-			"pos": {
-				"x": -281.101,
-				"y": 88.601
-			},
-			"type": "point"
-		},
-		{
-			"label": "",
+			"label": "ツヌルト南",
 			"pos": {
 				"x": -281.570,
 				"y": 88.273
 			},
-			"type": "point"
+			"type": "local"
 		},
 		{
-			"label": "",
+			"label": "新ウォモッツ",
 			"pos": {
 				"x": -281.992,
 				"y": 87.917
 			},
-			"type": "point"
+			"type": "local"
 		},
 		{
 			"label": "リロジィ",
@@ -340,28 +236,20 @@
 			"type": "middle"
 		},
 		{
-			"label": "",
+			"label": "リロジィ南公園",
 			"pos": {
 				"x": -282.914,
 				"y": 87.125
 			},
-			"type": "point"
+			"type": "local"
 		},
 		{
-			"label": "",
+			"label": "ダグラ中央",
 			"pos": {
 				"x": -283.309,
 				"y": 86.710
 			},
-			"type": "point"
-		},
-		{
-			"label": "",
-			"pos": {
-				"x": -283.708,
-				"y": 86.335
-			},
-			"type": "point"
+			"type": "local"
 		},
 		{
 			"label": "ミョーゼ",
@@ -372,84 +260,36 @@
 			"type": "middle"
 		},
 		{
-			"label": "",
+			"label": "ミョーゼ南",
 			"pos": {
 				"x": -284.558,
 				"y": 85.519
 			},
-			"type": "point"
+			"type": "local"
 		},
 		{
-			"label": "",
-			"pos": {
-				"x": -284.929,
-				"y": 85.179
-			},
-			"type": "point"
-		},
-		{
-			"label": "",
+			"label": "バルデス平原",
 			"pos": {
 				"x": -285.340,
 				"y": 84.898
 			},
-			"type": "point"
+			"type": "local"
 		},
 		{
-			"label": "",
-			"pos": {
-				"x": -285.750,
-				"y": 84.632
-			},
-			"type": "point"
-		},
-		{
-			"label": "",
+			"label": "南パヴォ",
 			"pos": {
 				"x": -286.305,
 				"y": 84.429
 			},
-			"type": "point"
+			"type": "local"
 		},
 		{
-			"label": "",
-			"pos": {
-				"x": -286.942,
-				"y": 84.300
-			},
-			"type": "point"
-		},
-		{
-			"label": "",
+			"label": "スーダ外郭",
 			"pos": {
 				"x": -287.517,
 				"y": 84.218
 			},
-			"type": "point"
-		},
-		{
-			"label": "",
-			"pos": {
-				"x": -288.158,
-				"y": 84.031
-			},
-			"type": "point"
-		},
-		{
-			"label": "",
-			"pos": {
-				"x": -288.713,
-				"y": 83.914
-			},
-			"type": "point"
-		},
-		{
-			"label": "",
-			"pos": {
-				"x": -289.314,
-				"y": 83.851
-			},
-			"type": "point"
+			"type": "local"
 		},
 		{
 			"label": "スーダ",
